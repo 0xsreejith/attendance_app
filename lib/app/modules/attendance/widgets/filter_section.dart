@@ -1,6 +1,7 @@
 import 'package:attendance_app/app/modules/attendance/controller/attendance_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 class FilterSection extends StatelessWidget {
   final AttendanceController controller;
 
@@ -29,22 +30,25 @@ class FilterSection extends StatelessWidget {
             children: [
               const Text("Status: "),
               const SizedBox(width: 8),
-              DropdownButton<String>(
-                value: controller.selectedStatus.value,
-                items: const [
-                  DropdownMenuItem(value: "All", child: Text("All")),
-                  DropdownMenuItem(value: "Present", child: Text("Present")),
-                  DropdownMenuItem(value: "Absent", child: Text("Absent")),
-                  DropdownMenuItem(value: "Late", child: Text("Late")),
-                  DropdownMenuItem(value: "Leave", child: Text("Leave")),
-                ],
-                onChanged: (value) {
-                  if (value != null) controller.selectedStatus.value = value;
-                },
-              ),
+              Obx(() => DropdownButton<String>(
+                    value: controller.selectedStatus.value,
+                    items: const [
+                      DropdownMenuItem(value: "All", child: Text("All")),
+                      DropdownMenuItem(
+                          value: "Present", child: Text("Present")),
+                      DropdownMenuItem(value: "Absent", child: Text("Absent")),
+                      DropdownMenuItem(value: "Late", child: Text("Late")),
+                      DropdownMenuItem(value: "Leave", child: Text("Leave")),
+                    ],
+                    onChanged: (value) {
+                      if (value != null)
+                        controller.selectedStatus.value = value;
+                    },
+                  )),
               const Spacer(),
               ElevatedButton(
-                onPressed: () => controller.applyFilter(controller.selectedStatus.value),
+                onPressed: () =>
+                    controller.applyFilter(controller.selectedStatus.value),
                 child: const Text("Apply Filters"),
               ),
             ],
@@ -53,19 +57,20 @@ class FilterSection extends StatelessWidget {
           InkWell(
             onTap: () => _pickDateRange(context),
             child: Obx(() => Container(
-              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-              decoration: BoxDecoration(
-                border: Border.all(color: Colors.grey.shade300),
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Row(
-                children: [
-                  const Icon(Icons.date_range, size: 20),
-                  const SizedBox(width: 8),
-                  Text(controller.formattedRange),
-                ],
-              ),
-            )),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.grey.shade300),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Row(
+                    children: [
+                      const Icon(Icons.date_range, size: 20),
+                      const SizedBox(width: 8),
+                      Text(controller.formattedRange),
+                    ],
+                  ),
+                )),
           ),
         ],
       ),
