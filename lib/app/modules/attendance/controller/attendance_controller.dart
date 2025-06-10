@@ -1,14 +1,15 @@
 import 'package:attendance_app/app/modules/attendance/model/attendance_model.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-
 class AttendanceController extends GetxController {
   var attendanceList = <AttendanceModel>[].obs;
   var filteredList = <AttendanceModel>[].obs;
-  var selectedStatus = "All".obs;
 
+  var selectedStatus = "All".obs;
   var selectedStartDate = Rxn<DateTime>();
   var selectedEndDate = Rxn<DateTime>();
+
+  var isCalendarView = false.obs;
 
   void fetchData() {
     attendanceList.value = [
@@ -22,7 +23,7 @@ class AttendanceController extends GetxController {
       AttendanceModel(
         date: DateTime(2025, 6, 6),
         checkIn: "--",
-        checkOut: "5:00 PM",
+        checkOut: "--",
         location: "Main Office",
         status: "Absent",
       ),
