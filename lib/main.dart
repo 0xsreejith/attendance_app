@@ -1,4 +1,5 @@
 import 'package:attendance_app/app/modules/attendance/view/attendance_screen.dart';
+import 'package:attendance_app/app/modules/attendance/view/main_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      home: MyAttendanceScreen(),
+      home:MainScreen(),
     );
   }
 }
