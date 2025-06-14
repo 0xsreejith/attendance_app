@@ -1,4 +1,3 @@
-import 'package:attendance_app/app/modules/attendance/components/task_tile.dart';
 import 'package:attendance_app/app/modules/attendance/components/task_tracker_tile.dart';
 import 'package:attendance_app/app/modules/attendance/controller/task_controller.dart';
 import 'package:attendance_app/app/modules/attendance/model/task_model.dart';
@@ -47,6 +46,5 @@ class TaskTracker extends StatelessWidget {
         );
       }),
     );
-    ;
   }
 }
