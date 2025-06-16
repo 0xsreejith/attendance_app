@@ -28,6 +28,86 @@ class _HomeScreenState extends State<HomeScreen> {
     {"title": "On Going & Pending Task", "icon": Icons.loop},
     {"title": "Work Summery", "icon": Icons.folder_outlined},
   ];
+  void showCustomCheckoutDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      barrierDismissible: false, // Prevent dismissal on outside tap
+      builder: (context) {
+        return Dialog(
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+          child: Stack(
+            clipBehavior: Clip.none,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(20),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Icon(Icons.warning_amber_rounded,
+                        size: 60, color: Colors.orange),
+                    const SizedBox(height: 16),
+                    const Text(
+                      "Do you really want",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.orange),
+                    ),
+                    const Text(
+                      " to check out out!",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.orange),
+                    ),
+                    const SizedBox(height: 24),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.grey[300]),
+                          onPressed: () {
+                            //update task logic
+                          },
+                          child: const Text("Update Task"),
+                        ),
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.blue),
+                          onPressed: () {
+                            const isCheckIN=false;
+                            Get.toNamed("/scanFace",arguments:isCheckIN );
+                          },
+                          child: const Text(
+                            "Check Out",
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ),
+                      ],
+                    )
+                  ],
+                ),
+              ),
+              // Close "X" button
+              Positioned(
+                right: -10,
+                top: -10,
+                child: IconButton(
+                  icon: const Icon(Icons.close, color: Colors.grey),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+              )
+            ],
+          ),
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -61,15 +141,15 @@ class _HomeScreenState extends State<HomeScreen> {
                         color: Colors.blue[35],
                         border: Border.all(color: Colors.grey),
                       ),
-                      child: const Column(
+                      child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
+                          const Text(
                             "You are Checked-in 09:00 AM",
                             style: TextStyle(color: Colors.green, fontSize: 20),
                           ),
-                          SizedBox(height: 10),
-                          Row(
+                          const SizedBox(height: 10),
+                          const Row(
                             children: [
                               Icon(
                                 Icons.alarm,
@@ -83,8 +163,8 @@ class _HomeScreenState extends State<HomeScreen> {
                               ),
                             ],
                           ),
-                          SizedBox(height: 10),
-                          Row(
+                          const SizedBox(height: 10),
+                          const Row(
                             children: [
                               Icon(
                                 Icons.location_on,
@@ -98,11 +178,14 @@ class _HomeScreenState extends State<HomeScreen> {
                               ),
                             ],
                           ),
-                          SizedBox(height: 20),
+                          const SizedBox(height: 20),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               CustomBtn(
+                                onTap: () {
+                                  Get.toNamed("/checkIn");
+                                },
                                 text: "Check In",
                                 color: Colors.blue,
                                 iconColors: Colors.white,
@@ -110,6 +193,10 @@ class _HomeScreenState extends State<HomeScreen> {
                               ),
                               SizedBox(width: 80),
                               CustomBtn(
+                                onTap: () {
+                                  //show dialog to confirm check out
+                                  showCustomCheckoutDialog(context);
+                                },
                                 text: "Check Out",
                                 color: Colors.grey,
                                 iconColors: Colors.white,
@@ -229,13 +316,13 @@ class _HomeScreenState extends State<HomeScreen> {
                     Obx(() {
                       switch (taskController.selectedTab.value) {
                         case 0:
-                          return MyTasks();
+                          return const MyTasks();
                         case 1:
-                          return TaskTracker();
+                          return const TaskTracker();
                         case 2:
-                          return OngoingPendingTasks();
+                          return const OngoingPendingTasks();
                         case 3:
-                          return WorkSummery();
+                          return const WorkSummery();
                         default:
                           return const SizedBox();
                       }

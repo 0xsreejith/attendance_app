@@ -40,6 +40,8 @@ dependencies:
   table_calendar: ^3.2.0
   dotted_border: ^2.1.0
   dotted_line: ^3.2.3
+  lottie: ^3.3.1
+  camera: ^0.10.5+4
 
 dev_dependencies:
   flutter_test:
@@ -65,6 +67,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/logo.jpeg
+    - assets/scan1.json
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 
 class CustomBtn extends StatelessWidget {
@@ -5,35 +6,41 @@ class CustomBtn extends StatelessWidget {
   final Color color;
   final Color iconColors;
   final Color textColors;
-
+  final void Function()? onTap; 
   const CustomBtn({
-    super.key,
+    Key? key,
     required this.text,
     required this.color,
-    required this.iconColors, required this.textColors,
-  });
+    required this.iconColors,
+    required this.textColors,
+    this.onTap,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.only(left: 20,right: 20,top: 10,bottom: 10),
-      decoration: BoxDecoration(
-        color: color,
-        borderRadius: BorderRadius.circular(10),
-      ),
-      child: Row(
-        children: [
-          Icon(
-            Icons.arrow_circle_right_outlined,
-            color: iconColors,
-            size: 30,
-          ),
-          const SizedBox(width: 10),
-          Text(
-            text,
-            style: TextStyle(color: textColors,fontSize: 20),
-          ),
-        ],
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        padding:
+            const EdgeInsets.only(left: 20, right: 20, top: 10, bottom: 10),
+        decoration: BoxDecoration(
+          color: color,
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: Row(
+          children: [
+            Icon(
+              Icons.arrow_circle_right_outlined,
+              color: iconColors,
+              size: 30,
+            ),
+            const SizedBox(width: 10),
+            Text(
+              text,
+              style: TextStyle(color: textColors, fontSize: 20),
+            ),
+          ],
+        ),
       ),
     );
   }
