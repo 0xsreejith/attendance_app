@@ -13,7 +13,7 @@ class AppPages {
       page: () => MainScreen(),
     ),
     GetPage(name: Routes.HOME, page: () => const HomeScreen()),
-    GetPage(name: Routes.chekIn, page: () => const CheckInPage()),
+    GetPage(name: Routes.chekIn, page: () =>  CheckInPage()),
     GetPage(name: Routes.scanFace, page: ()=>const ScanFaceScreen())
   ];
 }
