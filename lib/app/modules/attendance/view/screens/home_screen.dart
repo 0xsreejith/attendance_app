@@ -4,6 +4,7 @@ import 'package:attendance_app/app/modules/attendance/view/components/custom_btn
 import 'package:attendance_app/app/modules/attendance/view/components/dashboard_card.dart';
 import 'package:attendance_app/app/modules/attendance/view/components/over_view_card.dart';
 import 'package:attendance_app/app/modules/attendance/view/components/tab_btn.dart';
+import 'package:attendance_app/app/modules/attendance/view/screens/leave_screen.dart';
 import 'package:attendance_app/app/modules/attendance/view/widgets/custom_app_bar.dart';
 import 'package:attendance_app/app/modules/attendance/view/widgets/my_tasks.dart';
 import 'package:attendance_app/app/modules/attendance/view/widgets/ongoing_pending_tasks.dart';
@@ -26,7 +27,6 @@ class _HomeScreenState extends State<HomeScreen> {
       Get.put(PunchInPunchOutController(), permanent: true);
   final TaskTabController taskController =
       Get.put(TaskTabController(), permanent: true);
-      
   String selectedSort = "deadline";
 
   final List<Map<String, dynamic>> tabs = [
@@ -98,8 +98,8 @@ class _HomeScreenState extends State<HomeScreen> {
                             "isOnsite": false,
                           });
                         },
-                        style:
-                            ElevatedButton.styleFrom(backgroundColor: Colors.blue),
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.blue),
                         child: const Text("Work From Home",
                             style: TextStyle(color: Colors.white)),
                       ),
@@ -169,8 +169,8 @@ class _HomeScreenState extends State<HomeScreen> {
                             "isOnsite": punchController.isOnsite.value,
                           });
                         },
-                        style:
-                            ElevatedButton.styleFrom(backgroundColor: Colors.blue),
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.blue),
                         child: const Text("Continue",
                             style: TextStyle(color: Colors.white)),
                       ),
@@ -202,11 +202,11 @@ class _HomeScreenState extends State<HomeScreen> {
       final location = punchController.punchLocation.value;
 
       // Extract time parts
-      String inTime = punchInTime.isNotEmpty 
-          ? formatDateTime(punchInTime).split('\n')[0] 
+      String inTime = punchInTime.isNotEmpty
+          ? formatDateTime(punchInTime).split('\n')[0]
           : "";
-      String outTime = punchOutTime.isNotEmpty 
-          ? formatDateTime(punchOutTime).split('\n')[0] 
+      String outTime = punchOutTime.isNotEmpty
+          ? formatDateTime(punchOutTime).split('\n')[0]
           : "";
 
       // Determine status
@@ -242,7 +242,6 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
             const SizedBox(height: 10),
-
             if (isPunchedIn || punchOutTime.isNotEmpty) ...[
               if (punchInTime.isNotEmpty)
                 Row(
@@ -251,7 +250,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     const SizedBox(width: 10),
                     Text(
                       formatDateTime(punchInTime).split('\n')[1],
-                      style: const TextStyle(color: Colors.orange, fontSize: 18),
+                      style:
+                          const TextStyle(color: Colors.orange, fontSize: 18),
                     ),
                   ],
                 ),
@@ -267,7 +267,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
             ],
-
             const SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -431,12 +430,15 @@ class _HomeScreenState extends State<HomeScreen> {
                       crossAxisSpacing: 15,
                       mainAxisSpacing: 15,
                       childAspectRatio: 0.85,
-                      children: const [
+                      children:  [
                         DashboardCard(
                             icon: Icons.calendar_today_outlined,
                             iconColor: Colors.green,
                             title: "Attendance"),
                         DashboardCard(
+                            onTap: () {
+                              Get.to(const ApplyForLeaveScreen());
+                            },
                             icon: Icons.access_time,
                             iconColor: Colors.orange,
                             title: "Leaves"),
