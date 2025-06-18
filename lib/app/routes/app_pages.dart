@@ -1,7 +1,7 @@
-import 'package:attendance_app/app/modules/attendance/view/check_in_page.dart';
-import 'package:attendance_app/app/modules/attendance/view/home_screen.dart';
-import 'package:attendance_app/app/modules/attendance/view/main_screen.dart';
-import 'package:attendance_app/app/modules/attendance/view/scan_face.dart';
+import 'package:attendance_app/app/modules/attendance/view/screens/check_in_page.dart';
+import 'package:attendance_app/app/modules/attendance/view/screens/home_screen.dart';
+import 'package:attendance_app/app/modules/attendance/view/screens/main_screen.dart';
+import 'package:attendance_app/app/modules/attendance/view/screens/scan_face.dart';
 import 'package:get/get.dart';
 
 import 'app_routes.dart';

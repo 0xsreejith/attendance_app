@@ -1,4 +1,4 @@
-import 'package:attendance_app/app/modules/attendance/view/scan_succes_screen.dart';
+import 'package:attendance_app/app/modules/attendance/view/screens/scan_succes_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';

@@ -3,8 +3,8 @@ import 'package:attendance_app/app/modules/attendance/view/widgets/calander_view
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'widgets/filter_section.dart';
-import 'widgets/attendance_card.dart';
+import '../widgets/filter_section.dart';
+import '../widgets/attendance_card.dart';
 
 class MyAttendanceScreen extends StatelessWidget {
   final AttendanceController controller = Get.put(AttendanceController());

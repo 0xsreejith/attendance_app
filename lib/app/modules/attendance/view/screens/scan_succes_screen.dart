@@ -1,4 +1,4 @@
-import 'package:attendance_app/app/modules/attendance/view/home_screen.dart';
+import 'package:attendance_app/app/modules/attendance/view/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';

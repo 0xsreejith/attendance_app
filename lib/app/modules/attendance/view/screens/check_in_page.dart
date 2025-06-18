@@ -1,6 +1,6 @@
 import 'package:attendance_app/app/modules/attendance/controller/check_in_check_out_controller.dart';
-import 'package:attendance_app/app/modules/attendance/view/scan_face.dart';
-import 'package:attendance_app/app/modules/attendance/view/scan_qr_screen.dart';
+import 'package:attendance_app/app/modules/attendance/view/screens/scan_face.dart';
+import 'package:attendance_app/app/modules/attendance/view/screens/scan_qr_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
