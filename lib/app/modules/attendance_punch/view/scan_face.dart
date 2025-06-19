@@ -1,4 +1,5 @@
-import 'package:attendance_app/app/modules/home/view/screens/scan_succes_screen.dart';
+
+import 'package:attendance_app/app/modules/attendance_punch/view/scan_succes_screen.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

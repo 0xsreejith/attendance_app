@@ -7,7 +7,7 @@ import 'filter_section.dart';
 import 'attendance_card.dart';
 
 class MyAttendanceScreen extends StatelessWidget {
-  final AttendanceController controller = Get.put(AttendanceController());
+  final AttendanceController controller = Get.find<AttendanceController>();
 
   MyAttendanceScreen({super.key});
 

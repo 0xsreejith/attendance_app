@@ -1,5 +1,6 @@
 import 'package:attendance_app/app/modules/attendance_history/view/attendance_screen.dart';
-import 'package:attendance_app/app/modules/home/view/screens/home_screen.dart';
+import 'package:attendance_app/app/modules/auth/views/profile_page.dart';
+import 'package:attendance_app/app/modules/home/view/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -11,16 +12,16 @@ class MainScreenController extends GetxController {
   }
 }
 
-class MainScreen extends StatelessWidget {
+class BottomNavScreen extends StatelessWidget {
   final MainScreenController controller = Get.put(MainScreenController());
 
-  MainScreen({super.key});
+  BottomNavScreen({super.key});
 
   final List<Widget> pages = [
-    HomeScreen(), // Replace with actual Home widget
+    const HomeScreen(),
     MyAttendanceScreen(), // History Page
-    Center(child: Text("Leave Page")), // Replace with actual Leave widget
-    Center(child: Text("Profile Page")), // Replace with actual Profile widget
+    const Center(child: Text("Leave Page")),
+    const ProfilePage()
   ];
 
   @override

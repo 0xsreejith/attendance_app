@@ -1,7 +1,8 @@
 import 'package:attendance_app/app/modules/attendance_punch/controller/check_in_check_out_controller.dart';
 import 'package:attendance_app/app/modules/home/controller/tab_navigation.dart';
-import 'package:attendance_app/app/modules/home/view/widgets/my_tasks.dart';
-import 'package:attendance_app/app/modules/home/view/widgets/ongoing_pending_tasks.dart';
+import 'package:attendance_app/app/modules/home/controller/task_controller.dart';
+import 'package:attendance_app/app/modules/home/view/components/my_tasks.dart';
+import 'package:attendance_app/app/modules/home/view/components/ongoing_pending_tasks.dart';
 import 'package:attendance_app/app/widgets/custom_btn.dart';
 import 'package:attendance_app/app/modules/home/view/components/dashboard_card.dart';
 import 'package:attendance_app/app/modules/home/view/components/over_view_card.dart';
@@ -23,9 +24,11 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   // Make controllers persistent
   final PunchInPunchOutController punchController =
-      Get.put(PunchInPunchOutController(), permanent: true);
-  final TaskTabController taskController =
-      Get.put(TaskTabController(), permanent: true);
+      Get.put(PunchInPunchOutController());
+ 
+
+  final TaskController taskController = Get.find<TaskController>();
+  final TaskTabController tabController = Get.find<TaskTabController>();
   String selectedSort = "deadline";
 
   final List<Map<String, dynamic>> tabs = [
@@ -353,8 +356,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                 text: tab["title"],
                                 icon: tab["icon"],
                                 isSelected:
-                                    taskController.selectedTab.value == index,
-                                onTap: () => taskController.changeTab(index),
+                                    tabController.selectedTab.value == index,
+                                onTap: () => tabController.changeTab(index),
                               ),
                             );
                           }),
@@ -402,7 +405,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     const SizedBox(height: 10),
                     Obx(() {
-                      switch (taskController.selectedTab.value) {
+                      switch (tabController.selectedTab.value) {
                         case 0:
                           return const MyTasks();
                         case 1:
