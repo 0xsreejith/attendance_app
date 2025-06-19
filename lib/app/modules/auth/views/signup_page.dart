@@ -11,9 +11,9 @@ class SignupPage extends StatelessWidget {
   final emailCtrl = TextEditingController();
   final mobileCtrl = TextEditingController();
   final passCtrl = TextEditingController();
-  final confirmPassCtrl = TextEditingController(); // Confirm password
-  final _formKey = GlobalKey<FormState>();
+  final confirmPassCtrl = TextEditingController();
 
+  final _formKey = GlobalKey<FormState>();
   final authController = Get.find<AuthController>();
 
   @override
@@ -22,7 +22,25 @@ class SignupPage extends StatelessWidget {
       backgroundColor: Colors.white,
       body: Stack(
         children: [
-          // ... your Positioned widgets for images (unchanged) ...
+          // Top-left design image
+          Positioned(
+            top: 0,
+            left: 0,
+            child: Image.asset(
+              'assets/images/top-edited.jpg',
+              width: 150,
+            ),
+          ),
+          // Bottom-right design image
+          Positioned(
+            bottom: 0,
+            right: 0,
+            child: Image.asset(
+              'assets/images/bottom.png',
+              width: 150,
+            ),
+          ),
+          // Signup form
           Center(
             child: SingleChildScrollView(
               child: Padding(
@@ -50,7 +68,7 @@ class SignupPage extends StatelessWidget {
                       ),
                       const SizedBox(height: 40),
 
-                      // Name Field
+                      // Full Name
                       TextFormField(
                         controller: nameCtrl,
                         decoration: const InputDecoration(
@@ -62,7 +80,7 @@ class SignupPage extends StatelessWidget {
                       ),
                       const SizedBox(height: 10),
 
-                      // Email Field
+                      // Email
                       TextFormField(
                         controller: emailCtrl,
                         decoration: const InputDecoration(
@@ -75,7 +93,7 @@ class SignupPage extends StatelessWidget {
                       ),
                       const SizedBox(height: 10),
 
-                      // Mobile Field
+                      // Mobile Number
                       TextFormField(
                         controller: mobileCtrl,
                         decoration: const InputDecoration(
@@ -88,7 +106,7 @@ class SignupPage extends StatelessWidget {
                       ),
                       const SizedBox(height: 10),
 
-                      // Password Field
+                      // Password
                       TextFormField(
                         controller: passCtrl,
                         decoration: const InputDecoration(
@@ -102,7 +120,7 @@ class SignupPage extends StatelessWidget {
                       ),
                       const SizedBox(height: 10),
 
-                      // Confirm Password Field
+                      // Confirm Password
                       TextFormField(
                         controller: confirmPassCtrl,
                         decoration: const InputDecoration(
