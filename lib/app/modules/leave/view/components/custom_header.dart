@@ -76,9 +76,9 @@ class CustomHeader extends StatelessWidget {
               ),
               const SizedBox(width: 12),
               const CircleAvatar(
-                radius: 23,
+                radius: 25,
                 backgroundImage: NetworkImage(
-                  "https://imgs.search.brave.com/EQwbpjTWOjGzqB5UYYu9inlAzhLlj1S_N7qOUUOxkY0/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9zdGF0/aWMudmVjdGVlenku/Y29tL3N5c3RlbS9y/ZXNvdXJjZXMvdGh1/bWJuYWlscy8wNTkv/MzQwLzY4OC9zbWFs/bC9wcm9mZXNzaW9u/YWwtbWFuLXBvc2Vz/LWNvbmZpZGVudGx5/LWluLW1vZGVybi1v/ZmZpY2Utd2l0aC1s/YXJnZS13aW5kb3dz/LWFuZC11cmJhbi12/aWV3LXBob3RvLmpw/Zw",
+                  "https://i.pinimg.com/736x/60/c0/e5/60c0e5a45dbc723e391a8554602360bb.jpg",
                 ),
               ),
             ],

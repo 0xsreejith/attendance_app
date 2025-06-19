@@ -1,4 +1,6 @@
+import 'package:attendance_app/app/modules/auth/views/main_page.dart';
 import 'package:attendance_app/app/modules/home/view/home_screen.dart';
+import 'package:attendance_app/app/modules/home/view/main_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -25,7 +27,7 @@ class _ScanSuccessScreenState extends State<ScanSuccessScreen> {
 
   void goToHome() async {
     await Future.delayed(const Duration(seconds: 2));
-    Get.off(() =>  HomeScreen());
+    Get.off(() =>   MainPage());
   }
 
   @override

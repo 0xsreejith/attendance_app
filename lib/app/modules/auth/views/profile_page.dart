@@ -17,10 +17,6 @@ class ProfilePage extends StatelessWidget {
     }
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Profile'),
-        centerTitle: true,
-      ),
       body: FutureBuilder<DocumentSnapshot>(
         future:
             AuthController.to.firestore.collection('users').doc(userId).get(),
@@ -44,12 +40,12 @@ class ProfilePage extends StatelessWidget {
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12)),
                 child: Padding(
-                  padding: const EdgeInsets.all(20),
+                  padding: const EdgeInsets.all(30),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       const CircleAvatar(
-                        radius: 50,
+                        radius: 60,
                         backgroundImage: NetworkImage(
                             "https://i.pinimg.com/736x/60/c0/e5/60c0e5a45dbc723e391a8554602360bb.jpg"),
                       ),

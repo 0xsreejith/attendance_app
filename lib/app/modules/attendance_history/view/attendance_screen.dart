@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 
 import 'filter_section.dart';
 import 'attendance_card.dart';
-
 class MyAttendanceScreen extends StatelessWidget {
   final AttendanceController controller = Get.find<AttendanceController>();
 
@@ -13,7 +12,10 @@ class MyAttendanceScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    controller.fetchData();
+    // Avoid calling fetchData directly here!
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      controller.fetchData();
+    });
 
     return Scaffold(
       appBar: AppBar(
