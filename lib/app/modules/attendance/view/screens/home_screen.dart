@@ -430,14 +430,14 @@ class _HomeScreenState extends State<HomeScreen> {
                       crossAxisSpacing: 15,
                       mainAxisSpacing: 15,
                       childAspectRatio: 0.85,
-                      children:  [
+                      children: [
                         DashboardCard(
                             icon: Icons.calendar_today_outlined,
                             iconColor: Colors.green,
                             title: "Attendance"),
                         DashboardCard(
                             onTap: () {
-                              Get.to(const ApplyForLeaveScreen());
+                              Get.toNamed("/leave");
                             },
                             icon: Icons.access_time,
                             iconColor: Colors.orange,

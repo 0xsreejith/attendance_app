@@ -149,7 +149,8 @@ class _ApplyForLeaveScreenState extends State<ApplyForLeaveScreen> {
                     ],
                   ),
                 ),
-
+                // use two containers btn dashboard and request to leave 
+                //if clicked show dashborad if clike request to leave show above 
                 const SizedBox(height: 24),
                 const Text(
                   "Apply for leave",

@@ -3,4 +3,5 @@ abstract class Routes {
   static const MAIN = '/main';
   static const scanFace = "/scanFace";
   static const chekIn = '/checkIn';
+  static const leave = '/leave';
 }
