@@ -1,4 +1,4 @@
-import 'package:attendance_app/app/modules/attendance/model/task_model.dart';
+import 'package:attendance_app/app/modules/home/model/task_model.dart';
 import 'package:get/get.dart';
 
 class TaskController extends GetxController {
@@ -63,7 +63,6 @@ class TaskController extends GetxController {
     return tasks.map((t) => t.progress ?? 0.0).toList();
   }
 
-  // 🔥 NEW: Get average progress for all tasks
   double get overallProgress {
     if (tasks.isEmpty) return 0.0;
     final progresses = getAllProgress();

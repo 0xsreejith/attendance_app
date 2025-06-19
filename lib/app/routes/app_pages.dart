@@ -1,7 +1,7 @@
-import 'package:attendance_app/app/modules/attendance/view/screens/check_in_page.dart';
-import 'package:attendance_app/app/modules/attendance/view/screens/home_screen.dart';
-import 'package:attendance_app/app/modules/attendance/view/screens/main_screen.dart';
-import 'package:attendance_app/app/modules/attendance/view/screens/scan_face.dart';
+import 'package:attendance_app/app/modules/attendance_punch/view/check_in_page.dart';
+import 'package:attendance_app/app/modules/home/view/screens/home_screen.dart';
+import 'package:attendance_app/app/modules/home/view/screens/main_screen.dart';
+import 'package:attendance_app/app/modules/home/view/screens/scan_face.dart';
 import 'package:attendance_app/app/modules/leave/view/apply_leave_screen.dart';
 import 'package:get/get.dart';
 
@@ -14,8 +14,8 @@ class AppPages {
       page: () => MainScreen(),
     ),
     GetPage(name: Routes.HOME, page: () => const HomeScreen()),
-    GetPage(name: Routes.chekIn, page: () =>  CheckInPage()),
-    GetPage(name: Routes.scanFace, page: ()=>const ScanFaceScreen()),
-    GetPage(name: Routes.leave, page: ()=> ApplyForLeaveScreen())
+    GetPage(name: Routes.chekIn, page: () => CheckInPage()),
+    GetPage(name: Routes.scanFace, page: () => const ScanFaceScreen()),
+    GetPage(name: Routes.leave, page: () => const ApplyForLeaveScreen())
   ];
 }

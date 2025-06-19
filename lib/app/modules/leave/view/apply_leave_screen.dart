@@ -54,7 +54,7 @@ class ApplyForLeaveScreen extends StatelessWidget {
             // Tab Content
             Expanded(
               child: Obx(() => controller.selectedTab.value == 0
-                  ?  LeaveDashboard()
+                  ? const LeaveDashboard()
                   : const LeaveForm()),
             )
           ],

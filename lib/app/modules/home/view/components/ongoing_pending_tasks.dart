@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:attendance_app/app/modules/attendance/controller/task_controller.dart';
-import 'package:attendance_app/app/modules/attendance/model/task_model.dart';
-import 'package:attendance_app/app/modules/attendance/view/components/ongoing_pending_tile.dart';
+import 'package:attendance_app/app/modules/home/controller/task_controller.dart';
+import 'package:attendance_app/app/modules/home/model/task_model.dart';
+import 'package:attendance_app/app/modules/home/view/components/ongoing_pending_tile.dart';
 import 'package:dotted_line/dotted_line.dart';
 
 class OngoingPendingTasks extends StatelessWidget {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:attendance_app/app/modules/attendance/model/task_model.dart';
+import 'package:attendance_app/app/modules/home/model/task_model.dart';
 
 class OngoingPendingTile extends StatelessWidget {
   final TaskModel task;

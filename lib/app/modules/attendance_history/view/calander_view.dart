@@ -1,7 +1,7 @@
 // calendar_view.dart
 
-import 'package:attendance_app/app/modules/attendance/controller/attendance_controller.dart';
-import 'package:attendance_app/app/modules/attendance/model/attendance_model.dart';
+import 'package:attendance_app/app/modules/attendance_history/controller/attendance_controller.dart';
+import 'package:attendance_app/app/modules/attendance_history/model/attendance_model.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';

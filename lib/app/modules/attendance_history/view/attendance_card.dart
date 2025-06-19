@@ -1,4 +1,4 @@
-import 'package:attendance_app/app/modules/attendance/model/attendance_model.dart';
+import 'package:attendance_app/app/modules/attendance_history/model/attendance_model.dart';
 import 'package:flutter/material.dart';
 
 class AttendanceCard extends StatelessWidget {

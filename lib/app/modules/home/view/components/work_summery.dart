@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:attendance_app/app/modules/attendance/view/components/work_data.dart';
+import 'package:attendance_app/app/modules/home/view/components/work_data.dart';
 
 class WorkSummery extends StatelessWidget {
   const WorkSummery({super.key});

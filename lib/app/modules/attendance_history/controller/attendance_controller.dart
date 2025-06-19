@@ -1,4 +1,4 @@
-import 'package:attendance_app/app/modules/attendance/model/attendance_model.dart';
+import 'package:attendance_app/app/modules/attendance_history/model/attendance_model.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 class AttendanceController extends GetxController {

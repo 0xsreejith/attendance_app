@@ -1,6 +1,6 @@
-import 'package:attendance_app/app/modules/attendance/controller/check_in_check_out_controller.dart';
-import 'package:attendance_app/app/modules/attendance/view/screens/scan_face.dart';
-import 'package:attendance_app/app/modules/attendance/view/screens/scan_qr_screen.dart';
+import 'package:attendance_app/app/modules/attendance_punch/controller/check_in_check_out_controller.dart';
+import 'package:attendance_app/app/modules/home/view/screens/scan_face.dart';
+import 'package:attendance_app/app/modules/home/view/screens/scan_qr_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
@@ -8,7 +8,7 @@ import 'package:lottie/lottie.dart';
 class CheckInPage extends StatelessWidget {
   final PunchInPunchOutController punchController = Get.find();
 
-   CheckInPage({super.key});
+  CheckInPage({super.key});
 
   @override
   Widget build(BuildContext context) {

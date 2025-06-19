@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:attendance_app/app/modules/attendance/controller/task_controller.dart';
-import 'package:attendance_app/app/modules/attendance/model/task_model.dart';
+import 'package:attendance_app/app/modules/home/controller/task_controller.dart';
+import 'package:attendance_app/app/modules/home/model/task_model.dart';
 import 'package:intl/intl.dart';
 
 class TaskTrackerTile extends StatelessWidget {
