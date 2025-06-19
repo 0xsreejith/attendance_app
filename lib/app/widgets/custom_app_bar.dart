@@ -34,15 +34,17 @@ class CustomAppBar extends StatelessWidget {
                 child: Row(
                   children: [
                     // Profile image
-                    ClipOval(
-                      child: Image.network(
-                        "https://imgs.search.brave.com/EQwbpjTWOjGzqB5UYYu9inlAzhLlj1S_N7qOUUOxkY0/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9zdGF0/aWMudmVjdGVlenku/Y29tL3N5c3RlbS9y/ZXNvdXJjZXMvdGh1/bWJuYWlscy8wNTkv/MzQwLzY4OC9zbWFs/bC9wcm9mZXNzaW9u/YWwtbWFuLXBvc2Vz/LWNvbmZpZGVudGx5/LWluLW1vZGVybi1v/ZmZpY2Utd2l0aC1s/YXJnZS13aW5kb3dz/LWFuZC11cmJhbi12/aWV3LXBob3RvLmpw/Zw",
-                        height: 50,
-                        width: 50,
-                        fit: BoxFit.cover,
-                      ),
+                    Container(
+                      height: 50,
+                      width: 50,
+                      decoration:const BoxDecoration(
+                          shape: BoxShape.circle,
+                          image: DecorationImage(
+                              fit: BoxFit.cover,
+                              image: NetworkImage(
+                                  "https://i.pinimg.com/736x/60/c0/e5/60c0e5a45dbc723e391a8554602360bb.jpg"))),
                     ),
-                    const SizedBox(width: 40),
+                    const SizedBox(width: 20),
                     // Name and role
                     Expanded(
                       child: Column(
@@ -50,7 +52,7 @@ class CustomAppBar extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           const Text(
-                            "Hermant Rangarajan",
+                            "Sreejith",
                             overflow: TextOverflow.ellipsis,
                             style: TextStyle(
                                 fontSize: 20,
@@ -58,7 +60,7 @@ class CustomAppBar extends StatelessWidget {
                                 fontWeight: FontWeight.bold),
                           ),
                           Text(
-                            "Full Stack Developer",
+                            "Flutter Developer",
                             style: TextStyle(
                                 fontSize: 14,
                                 color: Colors.white.withOpacity(0.7)),

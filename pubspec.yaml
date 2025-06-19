@@ -44,6 +44,9 @@ dependencies:
   camera: ^0.10.5+4
   mobile_scanner: ^7.0.1
   flutter_sales_graph: ^0.0.2
+  firebase_auth: ^5.6.0
+  firebase_core: ^3.14.0
+  cloud_firestore: ^5.6.9
 
 dev_dependencies:
   flutter_test:
@@ -71,6 +74,9 @@ flutter:
     - assets/images/logo.jpeg
     - assets/scan1.json
     - assets/scan2.json
+    - assets/images/top-edited.jpg
+    - assets/images/bottom.png
+
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

@@ -4,4 +4,7 @@ abstract class Routes {
   static const scanFace = "/scanFace";
   static const chekIn = '/checkIn';
   static const leave = '/leave';
+  static const login = '/login';
+  static const signUp = '/signUp';
+  static const forgotPassword = '/forgotPassword';
 }
