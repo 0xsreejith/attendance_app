@@ -3,6 +3,7 @@ import 'package:attendance_app/app/modules/auth/controllers/auth_controller.dart
 import 'package:attendance_app/app/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 class ForgotPasswordPage extends StatelessWidget {
   ForgotPasswordPage({Key? key}) : super(key: key);
 
@@ -17,10 +18,11 @@ class ForgotPasswordPage extends StatelessWidget {
 
     final success = await authController.resetPassword(email);
     if (success) {
-      Get.snackbar(
-        "Success",
-        "Reset link sent to your email.",
-        snackPosition: SnackPosition.BOTTOM,
+      Get.defaultDialog(
+        title: "Email Sent",
+        middleText: "A password reset link has been sent to your email.",
+        textConfirm: "OK",
+        onConfirm: () => Get.back(),
       );
     }
   }
@@ -65,17 +67,16 @@ class ForgotPasswordPage extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(height: 30),
-
                       const Text(
                         "Enter your registered email to reset your password",
                         style: TextStyle(fontSize: 16),
                       ),
                       const SizedBox(height: 20),
-
                       TextFormField(
                         controller: emailCtrl,
                         decoration: const InputDecoration(
                           labelText: 'Email Address',
+                          prefixIcon: Icon(Icons.email_outlined),
                           border: OutlineInputBorder(),
                         ),
                         validator: (value) {
@@ -86,13 +87,11 @@ class ForgotPasswordPage extends StatelessWidget {
                         },
                       ),
                       const SizedBox(height: 20),
-
                       CustomBtn(
                         textBtn: "Reset Password",
                         onTap: _resetPassword,
                       ),
                       const SizedBox(height: 20),
-
                       TextButton(
                         onPressed: () {
                           Get.offNamed(Routes.login);

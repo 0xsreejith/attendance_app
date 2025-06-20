@@ -4,18 +4,14 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 
-
 class AuthController extends GetxController {
-  static AuthController get to => Get.find();
-  final FirebaseAuth _auth = FirebaseAuth.instance;
+  // Firebase instances
+  final _auth = FirebaseAuth.instance;
+  final _firestore = FirebaseFirestore.instance;
 
-  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-  FirebaseFirestore get firestore => _firestore;
-
-  /// Returns the currently logged-in user, or null if none
+  // Get current user
   User? get currentUser => _auth.currentUser;
 
-  /// Register new user, returns true on success
   Future<bool> register({
     required String name,
     required String email,
@@ -29,16 +25,15 @@ class AuthController extends GetxController {
       );
 
       if (userCredential.user == null) {
-        Get.snackbar("Error", "Failed to create user.",
-            snackPosition: SnackPosition.BOTTOM);
+        _showError("Failed to create user.");
         return false;
       }
 
       final newUser = UserModel(
         uid: userCredential.user!.uid,
-        name: name.trim(),
-        email: email.trim(),
-        mobile: mobile.trim(),
+        name: name,
+        email: email,
+        mobile: mobile,
       );
 
       await _firestore
@@ -46,89 +41,72 @@ class AuthController extends GetxController {
           .doc(newUser.uid)
           .set(newUser.toMap());
 
-      Get.snackbar("Success", "Account created successfully.",
-          snackPosition: SnackPosition.BOTTOM);
+      Get.snackbar("Success", "Account created successfully.");
       return true;
     } on FirebaseAuthException catch (e) {
       _handleAuthError(e);
       return false;
     } catch (e) {
-      _handleGenericError(e);
+      _showError(e.toString());
       return false;
     }
   }
 
-  /// Login existing user, returns true on success
   Future<bool> login(String email, String password) async {
     try {
       await _auth.signInWithEmailAndPassword(
-          email: email.trim(), password: password);
+        email: email.trim(),
+        password: password,
+      );
       return true;
     } on FirebaseAuthException catch (e) {
       _handleAuthError(e);
       return false;
     } catch (e) {
-      _handleGenericError(e);
+      _showError(e.toString());
       return false;
     }
   }
 
-  /// Send password reset email
   Future<bool> resetPassword(String email) async {
     try {
       await _auth.sendPasswordResetEmail(email: email.trim());
-      Get.snackbar("Success", "Password reset email sent.",
-          snackPosition: SnackPosition.BOTTOM);
+      Get.snackbar("Success", "Password reset email sent.");
       return true;
     } on FirebaseAuthException catch (e) {
+      print(e);
       _handleAuthError(e);
       return false;
     } catch (e) {
-      _handleGenericError(e);
+      _showError(e.toString());
       return false;
     }
   }
 
-  /// Sign out user
   Future<void> signOut() async {
     try {
       await _auth.signOut();
       Get.offAllNamed(Routes.login);
     } catch (e) {
-      _handleGenericError(e);
+      _showError(e.toString());
     }
   }
 
-  /// Private: handle Firebase Auth errors
   void _handleAuthError(FirebaseAuthException e) {
-    String message;
-    switch (e.code) {
-      case 'user-not-found':
-        message = "No user found for this email.";
-        break;
-      case 'wrong-password':
-        message = "Incorrect password.";
-        break;
-      case 'email-already-in-use':
-        message = "This email is already registered.";
-        break;
-      case 'invalid-email':
-        message = "The email address is not valid.";
-        break;
-      case 'weak-password':
-        message = "Password should be at least 6 characters.";
-        break;
-      default:
-        message = e.message ?? "Authentication error occurred.";
-    }
-    Get.snackbar("Error", message, snackPosition: SnackPosition.BOTTOM);
+    final messages = {
+      'user-not-found': "No user found for this email.",
+      'wrong-password': "Incorrect password.",
+      'email-already-in-use': "Email is already registered.",
+      'invalid-email': "Invalid email address.",
+      'weak-password': "Password should be at least 6 characters.",
+    };
+
+    final message = messages[e.code] ?? e.message ?? "Something went wrong.";
+    _showError(message);
   }
 
-  /// Private: handle generic errors
-  void _handleGenericError(dynamic e) {
-    Get.snackbar("Error", "Unexpected error: ${e.toString()}",
-        snackPosition: SnackPosition.BOTTOM);
+  /// ❗ Show error message
+  void _showError(String message) {
+    Get.snackbar("Error", message);
   }
 }
-
-

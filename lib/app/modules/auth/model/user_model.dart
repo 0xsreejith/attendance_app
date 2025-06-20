@@ -11,15 +11,6 @@ class UserModel {
     required this.mobile,
   });
 
-  Map<String, dynamic> toMap() {
-    return {
-      'uid': uid,
-      'name': name,
-      'email': email,
-      'mobile': mobile,
-    };
-  }
-
   factory UserModel.fromMap(Map<String, dynamic> map) {
     return UserModel(
       uid: map['uid'] ?? '',
@@ -29,8 +20,10 @@ class UserModel {
     );
   }
 
-  @override
-  String toString() {
-    return 'UserModel(uid: $uid, name: $name, email: $email, mobile: $mobile)';
-  }
+  Map<String, dynamic> toMap() => {
+        'uid': uid,
+        'name': name,
+        'email': email,
+        'mobile': mobile,
+      };
 }

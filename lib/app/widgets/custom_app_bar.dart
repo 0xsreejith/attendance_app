@@ -1,3 +1,4 @@
+import 'package:attendance_app/app/core/constannts/app_color.dart';
 import 'package:flutter/material.dart';
 
 class CustomAppBar extends StatelessWidget {
@@ -17,10 +18,7 @@ class CustomAppBar extends StatelessWidget {
               width: MediaQuery.of(context).size.width * 0.7,
               decoration: const BoxDecoration(
                 gradient: LinearGradient(
-                  colors: [
-                    Color(0xFFD8E9A8),
-                    Color(0xFF1E5128),
-                  ],
+                  colors: [AppColor.lightGreen, AppColor.darkGreen],
                   begin: Alignment.centerLeft,
                   end: Alignment.centerRight,
                 ),
@@ -37,7 +35,7 @@ class CustomAppBar extends StatelessWidget {
                     Container(
                       height: 50,
                       width: 50,
-                      decoration:const BoxDecoration(
+                      decoration: const BoxDecoration(
                           shape: BoxShape.circle,
                           image: DecorationImage(
                               fit: BoxFit.cover,
@@ -73,7 +71,6 @@ class CustomAppBar extends StatelessWidget {
               ),
             ),
 
-            // Company Logo or Top Right Icon
             Positioned(
               top: 10,
               right: -20,
@@ -94,10 +91,10 @@ class CustomAppBar extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(right: 8.0),
           child: Container(
-            padding: EdgeInsets.all(10),
+            padding: const EdgeInsets.all(10),
             decoration: BoxDecoration(
                 color: Colors.blue, borderRadius: BorderRadius.circular(30)),
-            child: Icon(
+            child: const Icon(
               Icons.notifications,
               color: Colors.white,
             ),

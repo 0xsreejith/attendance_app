@@ -1,6 +1,4 @@
 import 'package:attendance_app/app/modules/auth/views/main_page.dart';
-import 'package:attendance_app/app/modules/home/view/home_screen.dart';
-import 'package:attendance_app/app/modules/home/view/main_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -21,7 +19,7 @@ class _ScanSuccessScreenState extends State<ScanSuccessScreen> {
   void initState() {
     super.initState();
     final now = DateTime.now();
-    formattedTime = DateFormat('hh:mm a').format(now); // e.g., 09:05 AM
+    formattedTime = DateFormat('hh:mm a').format(now); 
     goToHome();
   }
 
