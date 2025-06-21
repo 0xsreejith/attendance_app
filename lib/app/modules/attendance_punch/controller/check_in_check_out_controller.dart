@@ -5,7 +5,7 @@ class PunchInPunchOutController extends GetxController {
   var punchInTime = ''.obs;
   var punchOutTime = ''.obs;
   var punchLocation = ''.obs;
-  var isOnsite = false.obs; // Track location type for punch-out
+  var isOnsite = false.obs;
 
   void punchIn({required bool isOnsite}) {
     this.isOnsite.value = isOnsite;
@@ -30,6 +30,6 @@ class PunchInPunchOutController extends GetxController {
   }
 
   String _getFormattedTime() {
-    return DateTime.now().toIso8601String(); 
+    return DateTime.now().toIso8601String();
   }
 }

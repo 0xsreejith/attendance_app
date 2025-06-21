@@ -8,75 +8,57 @@ class MyDashboardCard extends StatelessWidget {
   final Widget child;
 
   const MyDashboardCard({
-    super.key,
+    Key? key,
     required this.headText,
     required this.dayText,
     required this.subText,
     required this.icon,
     required this.child,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return IntrinsicHeight(
-      child: Container(
-        padding: const EdgeInsets.all(16),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(16),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.2), // outer subtle
-              spreadRadius: 2,
-              blurRadius: 12,
-              offset: const Offset(4, 4),
-            ),
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.05), // soft inner glow
-              spreadRadius: -1,
-              blurRadius: 6,
-              offset: const Offset(-2, -2),
-            ),
-          ],
-        ),
+    return Card(
+      elevation: 3,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      child: Padding(
+        padding: const EdgeInsets.all(12),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  headText,
-                  style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16,
+                Icon(icon, size: 30, color: Colors.blue),
+                const SizedBox(width: 10),
+                Expanded(
+                  child: Text(
+                    headText,
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    overflow: TextOverflow.ellipsis,
                   ),
                 ),
-                Icon(icon, color: Colors.blue),
               ],
             ),
-            const SizedBox(height: 10),
+            const SizedBox(height: 8),
             Text(
               dayText,
               style: const TextStyle(
-                color: Colors.black,
-                fontSize: 28,
+                fontSize: 24,
                 fontWeight: FontWeight.bold,
+                color: Colors.black87,
               ),
+              overflow: TextOverflow.ellipsis,
             ),
             const SizedBox(height: 4),
             Text(
               subText,
-              style: const TextStyle(
-                color: Colors.grey,
-                fontSize: 14,
-              ),
+              style: const TextStyle(fontSize: 14, color: Colors.grey),
+              overflow: TextOverflow.ellipsis,
             ),
-            if (child != const SizedBox()) ...[
-              const SizedBox(height: 12),
-              child,
-            ]
+            child,
           ],
         ),
       ),

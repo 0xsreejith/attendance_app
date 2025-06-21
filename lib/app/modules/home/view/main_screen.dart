@@ -19,7 +19,7 @@ class BottomNavScreen extends StatelessWidget {
 
   final List<Widget> pages = [
     const HomeScreen(),
-    MyAttendanceScreen(), // History Page
+    MyAttendanceScreen(),
     const Center(child: Text("Leave Page")),
     const ProfilePage()
   ];

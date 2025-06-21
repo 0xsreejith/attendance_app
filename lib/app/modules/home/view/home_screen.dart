@@ -25,7 +25,6 @@ class _HomeScreenState extends State<HomeScreen> {
   // Make controllers persistent
   final PunchInPunchOutController punchController =
       Get.put(PunchInPunchOutController());
- 
 
   final TaskController taskController = Get.find<TaskController>();
   final TaskTabController tabController = Get.find<TaskTabController>();
@@ -197,107 +196,127 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget _buildCheckInSection() {
-    return Obx(() {
-      final isPunchedIn = punchController.isPunchedIn.value;
-      final punchInTime = punchController.punchInTime.value;
-      final punchOutTime = punchController.punchOutTime.value;
-      final location = punchController.punchLocation.value;
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        double screenWidth = constraints.maxWidth;
+        double fontSize = screenWidth < 400 ? 16 : 20;
+        double iconTextFontSize = screenWidth < 400 ? 14 : 18;
 
-      // Extract time parts
-      String inTime = punchInTime.isNotEmpty
-          ? formatDateTime(punchInTime).split('\n')[0]
-          : "";
-      String outTime = punchOutTime.isNotEmpty
-          ? formatDateTime(punchOutTime).split('\n')[0]
-          : "";
+        return Obx(() {
+          final isPunchedIn = punchController.isPunchedIn.value;
+          final punchInTime = punchController.punchInTime.value;
+          final punchOutTime = punchController.punchOutTime.value;
+          final location = punchController.punchLocation.value;
 
-      // Determine status
-      String statusText;
-      Color statusColor;
-      if (isPunchedIn) {
-        statusText = "You are Checked-in at $inTime";
-        statusColor = Colors.green;
-      } else if (punchOutTime.isNotEmpty) {
-        statusText = "You haven't punched in yet!";
-        statusColor = Colors.red;
-      } else {
-        statusText = "You haven't punched in yet!";
-        statusColor = Colors.red;
-      }
+          // Extract time parts
+          String inTime = punchInTime.isNotEmpty
+              ? formatDateTime(punchInTime).split('\n')[0]
+              : "";
+          String outTime = punchOutTime.isNotEmpty
+              ? formatDateTime(punchOutTime).split('\n')[0]
+              : "";
 
-      return Container(
-        padding: const EdgeInsets.all(15),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(12),
-          color: Colors.blue.shade50,
-          border: Border.all(color: Colors.grey),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              statusText,
-              style: TextStyle(
-                color: statusColor,
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-              ),
+          // Determine status
+          String statusText;
+          Color statusColor;
+          if (isPunchedIn) {
+            statusText = "You are Checked-in at $inTime";
+            statusColor = Colors.green;
+          } else if (punchOutTime.isNotEmpty) {
+            statusText = "You haven't punched in yet!";
+            statusColor = Colors.red;
+          } else {
+            statusText = "You haven't punched in yet!";
+            statusColor = Colors.red;
+          }
+
+          return Container(
+            padding: const EdgeInsets.all(15),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(12),
+              color: Colors.blue.shade50,
+              border: Border.all(color: Colors.grey),
             ),
-            const SizedBox(height: 10),
-            if (isPunchedIn || punchOutTime.isNotEmpty) ...[
-              if (punchInTime.isNotEmpty)
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  statusText,
+                  style: TextStyle(
+                    color: statusColor,
+                    fontSize: fontSize,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(height: 10),
+                if (isPunchedIn || punchOutTime.isNotEmpty) ...[
+                  if (punchInTime.isNotEmpty)
+                    Row(
+                      children: [
+                        const Icon(Icons.alarm, color: Colors.orange),
+                        const SizedBox(width: 10),
+                        Text(
+                          formatDateTime(punchInTime).split('\n')[1],
+                          style: TextStyle(
+                            color: Colors.orange,
+                            fontSize: iconTextFontSize,
+                          ),
+                        ),
+                      ],
+                    ),
+                  const SizedBox(height: 10),
+                  Row(
+                    children: [
+                      const Icon(Icons.location_on, color: Colors.red),
+                      const SizedBox(width: 10),
+                      Expanded(
+                        child: Text(
+                          location,
+                          style: TextStyle(fontSize: iconTextFontSize),
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+                const SizedBox(height: 20),
                 Row(
                   children: [
-                    const Icon(Icons.alarm, color: Colors.orange),
-                    const SizedBox(width: 10),
-                    Text(
-                      formatDateTime(punchInTime).split('\n')[1],
-                      style:
-                          const TextStyle(color: Colors.orange, fontSize: 18),
+                    Expanded(
+                      child: CustomBtn(
+                        onTap: () {
+                          if (!isPunchedIn) {
+                            _showPunchInOptionDialog(Get.context!);
+                          }
+                        },
+                        text: "Punch In",
+                        color: isPunchedIn ? Colors.grey.shade400 : Colors.blue,
+                        iconColors: Colors.white,
+                        textColors: Colors.white,
+                      ),
+                    ),
+                    const SizedBox(width: 16),
+                    Expanded(
+                      child: CustomBtn(
+                        onTap: () {
+                          if (isPunchedIn) {
+                            _showCheckoutDialog();
+                          }
+                        },
+                        text: "Punch Out",
+                        color: isPunchedIn ? Colors.blue : Colors.grey.shade300,
+                        iconColors: Colors.white,
+                        textColors: Colors.white,
+                      ),
                     ),
                   ],
                 ),
-              const SizedBox(height: 10),
-              Row(
-                children: [
-                  const Icon(Icons.location_on, color: Colors.red),
-                  const SizedBox(width: 10),
-                  Text(
-                    location,
-                    style: const TextStyle(fontSize: 18),
-                  ),
-                ],
-              ),
-            ],
-            const SizedBox(height: 20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                CustomBtn(
-                  onTap: () {
-                    if (!isPunchedIn) _showPunchInOptionDialog(Get.context!);
-                  },
-                  text: "Punch In",
-                  color: isPunchedIn ? Colors.grey.shade400 : Colors.blue,
-                  iconColors: Colors.white,
-                  textColors: Colors.white,
-                ),
-                const SizedBox(width: 80),
-                CustomBtn(
-                  onTap: () {
-                    if (isPunchedIn) _showCheckoutDialog();
-                  },
-                  text: "Punch Out",
-                  color: isPunchedIn ? Colors.blue : Colors.grey.shade300,
-                  iconColors: Colors.white,
-                  textColors: Colors.white,
-                ),
               ],
             ),
-          ],
-        ),
-      );
-    });
+          );
+        });
+      },
+    );
   }
 
   @override
@@ -425,42 +444,53 @@ class _HomeScreenState extends State<HomeScreen> {
                             fontWeight: FontWeight.bold,
                             fontSize: 22)),
                     const SizedBox(height: 10),
-                    GridView.count(
-                      physics: const NeverScrollableScrollPhysics(),
-                      shrinkWrap: true,
-                      crossAxisCount: 3,
-                      crossAxisSpacing: 15,
-                      mainAxisSpacing: 15,
-                      childAspectRatio: 0.85,
-                      children: [
-                        DashboardCard(
-                            icon: Icons.calendar_today_outlined,
-                            iconColor: Colors.green,
-                            title: "Attendance"),
-                        DashboardCard(
-                            onTap: () {
-                              Get.toNamed("/leave");
-                            },
-                            icon: Icons.access_time,
-                            iconColor: Colors.orange,
-                            title: "Leaves"),
-                        DashboardCard(
-                            icon: Icons.circle,
-                            iconColor: Colors.purple,
-                            title: "Leave Status"),
-                        DashboardCard(
-                            icon: Icons.checklist,
-                            iconColor: Colors.indigo,
-                            title: "Holiday List"),
-                        DashboardCard(
-                            icon: Icons.payment_sharp,
-                            iconColor: Colors.greenAccent,
-                            title: "Payslip"),
-                        DashboardCard(
-                            icon: Icons.auto_graph_sharp,
-                            iconColor: Colors.red,
-                            title: "Reports"),
-                      ],
+                    LayoutBuilder(
+                      builder: (context, constraints) {
+                        int crossAxisCount = 2;
+                        if (constraints.maxWidth > 900) {
+                          crossAxisCount = 4;
+                        } else if (constraints.maxWidth > 600) {
+                          crossAxisCount = 3;
+                        }
+
+                        return GridView.count(
+                          physics: const NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
+                          crossAxisCount: crossAxisCount,
+                          crossAxisSpacing: 15,
+                          mainAxisSpacing: 15,
+                          childAspectRatio: 0.85,
+                          children: [
+                            DashboardCard(
+                                icon: Icons.calendar_today_outlined,
+                                iconColor: Colors.green,
+                                title: "Attendance"),
+                            DashboardCard(
+                                onTap: () {
+                                  Get.toNamed("/leave");
+                                },
+                                icon: Icons.access_time,
+                                iconColor: Colors.orange,
+                                title: "Leaves"),
+                            DashboardCard(
+                                icon: Icons.circle,
+                                iconColor: Colors.purple,
+                                title: "Leave Status"),
+                            DashboardCard(
+                                icon: Icons.checklist,
+                                iconColor: Colors.indigo,
+                                title: "Holiday List"),
+                            DashboardCard(
+                                icon: Icons.payment_sharp,
+                                iconColor: Colors.greenAccent,
+                                title: "Payslip"),
+                            DashboardCard(
+                                icon: Icons.auto_graph_sharp,
+                                iconColor: Colors.red,
+                                title: "Reports"),
+                          ],
+                        );
+                      },
                     ),
                   ],
                 ),

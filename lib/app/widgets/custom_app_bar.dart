@@ -1,4 +1,3 @@
-import 'package:attendance_app/app/core/constannts/app_color.dart';
 import 'package:flutter/material.dart';
 
 class CustomAppBar extends StatelessWidget {
@@ -18,7 +17,10 @@ class CustomAppBar extends StatelessWidget {
               width: MediaQuery.of(context).size.width * 0.7,
               decoration: const BoxDecoration(
                 gradient: LinearGradient(
-                  colors: [AppColor.lightGreen, AppColor.darkGreen],
+                  colors: [
+                    Color(0xFF00416A),
+                    Color(0xFF799F0C),
+                  ],
                   begin: Alignment.centerLeft,
                   end: Alignment.centerRight,
                 ),

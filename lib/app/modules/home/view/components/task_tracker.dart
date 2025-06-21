@@ -11,6 +11,7 @@ class TaskTracker extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final TaskController taskController = Get.find<TaskController>();
+
     return Padding(
       padding: const EdgeInsets.all(10),
       child: Obx(() {
