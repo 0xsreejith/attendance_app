@@ -474,10 +474,11 @@ class _HomeScreenState extends State<HomeScreen> {
                               mainAxisSpacing: 10,
                               childAspectRatio: 0.75,
                               children: [
-                                const DashboardCard(
+                                DashboardCard(
                                   icon: Icons.calendar_today_outlined,
                                   iconColor: Colors.green,
                                   title: "Attendance",
+                                  onTap: () => Get.toNamed("/attendance"),
                                 ),
                                 DashboardCard(
                                   onTap: () => Get.toNamed("/leave"),
