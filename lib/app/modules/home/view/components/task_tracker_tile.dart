@@ -37,11 +37,11 @@ class TaskTrackerTile extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        /// Title and Due Date Row
+        // Title & Due Date
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Expanded(
+            Flexible(
               child: Text(
                 task.title ?? "Untitled Task",
                 style: const TextStyle(
@@ -52,19 +52,18 @@ class TaskTrackerTile extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
               ),
             ),
-            const SizedBox(width: 10),
             Text(
-              "Due: ${formatDate(task.dueDate)}",
+              "Due Date: ${formatDate(task.dueDate)}",
               style: const TextStyle(color: Colors.grey),
             ),
           ],
         ),
         const SizedBox(height: 10),
 
-        /// Status Radio Buttons (Horizontal)
+        // Status + Radio Buttons
         Wrap(
-          spacing: 8,
-          runSpacing: 4,
+          crossAxisAlignment: WrapCrossAlignment.center,
+          spacing: 4,
           children: [
             const Text("Status:", style: TextStyle(fontSize: 16)),
             _buildRadio(task, "Not Started", taskController),
@@ -74,16 +73,15 @@ class TaskTrackerTile extends StatelessWidget {
         ),
         const SizedBox(height: 12),
 
-        /// Progress, Time Left, Assigned By - wrapped for responsiveness
-        Wrap(
-          spacing: 12,
-          runSpacing: 8,
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Row(
-              mainAxisSize: MainAxisSize.min,
               children: [
-                const Text("Progress:", style: TextStyle(fontSize: 16)),
-                const SizedBox(width: 6),
+                const Text(
+                  "Progress:",
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                ),
                 Stack(
                   alignment: Alignment.center,
                   children: [
@@ -118,6 +116,7 @@ class TaskTrackerTile extends StatelessWidget {
                     ),
                   ],
                 ),
+                const SizedBox(width: 8),
               ],
             ),
             Text(
@@ -129,31 +128,61 @@ class TaskTrackerTile extends StatelessWidget {
                     : Colors.orange,
               ),
             ),
-            const Text("✎ Assigned by\n(optional)"),
+            const Text("✎ Assigned by \n(optional)"),
           ],
         ),
         const SizedBox(height: 12),
 
-        /// Priority Row
-        Wrap(
-          spacing: 16,
+        // Priority Display Row
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             const Text(
               "Priority:",
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
             ),
-            _buildPriority("Low", task.priority),
-            _buildPriority("Medium", task.priority),
-            _buildPriority("High", task.priority),
+            const SizedBox(width: 12),
+            Text(
+              "Low",
+              style: TextStyle(
+                fontSize: 14,
+                color: task.priority == "Low" ? Colors.green : Colors.black,
+                fontWeight: task.priority == "Low"
+                    ? FontWeight.bold
+                    : FontWeight.normal,
+              ),
+            ),
+            const SizedBox(width: 12),
+            Text(
+              "Medium",
+              style: TextStyle(
+                fontSize: 14,
+                color: task.priority == "Medium" ? Colors.orange : Colors.black,
+                fontWeight: task.priority == "Medium"
+                    ? FontWeight.bold
+                    : FontWeight.normal,
+              ),
+            ),
+            const SizedBox(width: 12),
+            Text(
+              "High",
+              style: TextStyle(
+                fontSize: 14,
+                color: task.priority == "High" ? Colors.red : Colors.black,
+                fontWeight: task.priority == "High"
+                    ? FontWeight.bold
+                    : FontWeight.normal,
+              ),
+            ),
           ],
         ),
         const SizedBox(height: 12),
 
-        /// Updation Radio Buttons
+        // Fixed: Overflowing Radio Buttons (Wrap instead of Row)
         Wrap(
-          spacing: 16,
+          spacing: 12,
+          runSpacing: 4,
           children: [
-            const Text("Update:", style: TextStyle(fontSize: 16)),
             _buildUpdationRadio(task, "Start"),
             _buildUpdationRadio(task, "Update"),
             _buildUpdationRadio(task, "Complete"),
@@ -191,23 +220,12 @@ class TaskTrackerTile extends StatelessWidget {
           visualDensity: VisualDensity.compact,
           materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
           onChanged: (val) {
-            // update updation status here
+            // Update task.updation using controller if needed
           },
         ),
         Text(value, style: const TextStyle(fontSize: 14)),
+        const SizedBox(width: 8),
       ],
-    );
-  }
-
-  Widget _buildPriority(String level, String? selected) {
-    final color = getPriorityColor(level);
-    return Text(
-      level,
-      style: TextStyle(
-        fontSize: 14,
-        color: selected == level ? color : Colors.black,
-        fontWeight: selected == level ? FontWeight.bold : FontWeight.normal,
-      ),
     );
   }
 }

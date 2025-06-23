@@ -446,49 +446,68 @@ class _HomeScreenState extends State<HomeScreen> {
                     const SizedBox(height: 10),
                     LayoutBuilder(
                       builder: (context, constraints) {
-                        int crossAxisCount = 2;
+                        int crossAxisCount = 3;
                         if (constraints.maxWidth > 900) {
                           crossAxisCount = 4;
                         } else if (constraints.maxWidth > 600) {
                           crossAxisCount = 3;
                         }
 
-                        return GridView.count(
-                          physics: const NeverScrollableScrollPhysics(),
-                          shrinkWrap: true,
-                          crossAxisCount: crossAxisCount,
-                          crossAxisSpacing: 15,
-                          mainAxisSpacing: 15,
-                          childAspectRatio: 0.85,
-                          children: [
-                            DashboardCard(
-                                icon: Icons.calendar_today_outlined,
-                                iconColor: Colors.green,
-                                title: "Attendance"),
-                            DashboardCard(
-                                onTap: () {
-                                  Get.toNamed("/leave");
-                                },
-                                icon: Icons.access_time,
-                                iconColor: Colors.orange,
-                                title: "Leaves"),
-                            DashboardCard(
-                                icon: Icons.circle,
-                                iconColor: Colors.purple,
-                                title: "Leave Status"),
-                            DashboardCard(
-                                icon: Icons.checklist,
-                                iconColor: Colors.indigo,
-                                title: "Holiday List"),
-                            DashboardCard(
-                                icon: Icons.payment_sharp,
-                                iconColor: Colors.greenAccent,
-                                title: "Payslip"),
-                            DashboardCard(
-                                icon: Icons.auto_graph_sharp,
-                                iconColor: Colors.red,
-                                title: "Reports"),
-                          ],
+                        return LayoutBuilder(
+                          builder: (context, constraints) {
+                            int crossAxisCount;
+
+                            if (constraints.maxWidth >= 1200) {
+                              crossAxisCount = 5; // Desktop
+                            } else if (constraints.maxWidth >= 800) {
+                              crossAxisCount = 4; // Tablet
+                            } else {
+                              crossAxisCount =
+                                  3; // Mobile (default to 3 per row)
+                            }
+
+                            return GridView.count(
+                              physics: const NeverScrollableScrollPhysics(),
+                              shrinkWrap: true,
+                              crossAxisCount: crossAxisCount,
+                              crossAxisSpacing: 10,
+                              mainAxisSpacing: 10,
+                              childAspectRatio: 0.75,
+                              children: [
+                                const DashboardCard(
+                                  icon: Icons.calendar_today_outlined,
+                                  iconColor: Colors.green,
+                                  title: "Attendance",
+                                ),
+                                DashboardCard(
+                                  onTap: () => Get.toNamed("/leave"),
+                                  icon: Icons.access_time,
+                                  iconColor: Colors.orange,
+                                  title: "Leaves",
+                                ),
+                                const DashboardCard(
+                                  icon: Icons.circle,
+                                  iconColor: Colors.purple,
+                                  title: "Leave Status",
+                                ),
+                                const DashboardCard(
+                                  icon: Icons.checklist,
+                                  iconColor: Colors.indigo,
+                                  title: "Holiday List",
+                                ),
+                                const DashboardCard(
+                                  icon: Icons.payment_sharp,
+                                  iconColor: Colors.greenAccent,
+                                  title: "Payslip",
+                                ),
+                                const DashboardCard(
+                                  icon: Icons.auto_graph_sharp,
+                                  iconColor: Colors.red,
+                                  title: "Reports",
+                                ),
+                              ],
+                            );
+                          },
                         );
                       },
                     ),
