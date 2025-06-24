@@ -2,6 +2,78 @@ import 'package:flutter/material.dart';
 
 class CustomHeader extends StatelessWidget {
   const CustomHeader({super.key});
+  void showSearchHistoryDialog(BuildContext context) {
+    showGeneralDialog(
+      context: context,
+      barrierDismissible: true,
+      barrierLabel: '',
+      transitionDuration: const Duration(milliseconds: 300),
+      pageBuilder: (context, anim1, anim2) {
+        return Align(
+          alignment: Alignment.topCenter,
+          child: Material(
+            child: Container(
+              width: MediaQuery.of(context).size.width,
+              // margin: const EdgeInsets.only(top: 35),
+              padding: const EdgeInsets.all(16),
+              decoration: const BoxDecoration(
+                color: Colors.white,
+                boxShadow: [
+                  BoxShadow(
+                    blurRadius: 8,
+                    color: Colors.black26,
+                    offset: Offset(0, 4),
+                  ),
+                ],
+              ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const SizedBox(
+                    height: 30,
+                  ),
+                  Row(
+                    children: [
+                      const Icon(Icons.arrow_back_ios, size: 18),
+                      const SizedBox(width: 8),
+                      const Text("05 May 2025",
+                          style: TextStyle(fontWeight: FontWeight.bold)),
+                      const Spacer(),
+                      Container(
+                          padding: const EdgeInsets.all(10),
+                          decoration: const BoxDecoration(
+                              color: Colors.green,
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(8))),
+                          child: const Center(
+                              child: Icon(Icons.send, color: Colors.white))),
+                    ],
+                  ),
+                  const SizedBox(height: 12),
+                  const Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text("Search History",
+                        style: TextStyle(fontWeight: FontWeight.bold)),
+                  ),
+                  const SizedBox(height: 8),
+                  const ListTile(title: Text("Sick Leave.....")),
+                  const ListTile(title: Text("23 May 2025...")),
+                  const ListTile(title: Text("Casual Leaves...")),
+                ],
+              ),
+            ),
+          ),
+        );
+      },
+      transitionBuilder: (context, anim1, anim2, child) {
+        return SlideTransition(
+          position: Tween(begin: const Offset(0, -1), end: Offset.zero)
+              .animate(anim1),
+          child: FadeTransition(opacity: anim1, child: child),
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +110,10 @@ class CustomHeader extends StatelessWidget {
                   ],
                 ),
                 child: TextField(
+                  readOnly: true,
+                  onTap: () => showSearchHistoryDialog(context),
                   decoration: InputDecoration(
+                    prefixIcon: Icon(Icons.search, color: Colors.grey[600]),
                     hintText: "Search",
                     hintStyle: TextStyle(color: Colors.grey[600]),
                     border: InputBorder.none,

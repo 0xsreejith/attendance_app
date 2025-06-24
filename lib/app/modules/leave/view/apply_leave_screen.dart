@@ -1,7 +1,7 @@
 // File: apply_for_leave_screen.dart
 
 import 'package:attendance_app/app/modules/leave/view/components/custom_btn.dart';
-import 'package:attendance_app/app/modules/leave/view/components/custom_header.dart';
+import 'package:attendance_app/app/widgets/custom_header.dart';
 import 'package:attendance_app/app/modules/leave/view/components/leave_dashborad.dart';
 import 'package:attendance_app/app/modules/leave/view/components/leave_form.dart';
 import 'package:flutter/material.dart';
