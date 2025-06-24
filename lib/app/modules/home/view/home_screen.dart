@@ -337,7 +337,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     const SizedBox(height: 10),
                     const Text("Good Morning,",
                         style: TextStyle(color: Colors.grey, fontSize: 20)),
-                    const Text("Hermant Rangarajan",
+                    const Text("Sreejith",
                         style: TextStyle(fontSize: 24, color: Colors.grey)),
                     const SizedBox(height: 20),
                     _buildCheckInSection(),

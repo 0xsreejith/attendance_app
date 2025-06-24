@@ -5,8 +5,6 @@ import 'package:table_calendar/table_calendar.dart';
 import 'package:attendance_app/app/widgets/custom_header.dart';
 import 'package:attendance_app/app/modules/holiday/controller/holiday_controller.dart';
 import 'package:attendance_app/app/modules/holiday/view/components/my_holiday_card.dart';
-import 'package:attendance_app/app/core/constannts/app_color.dart';
-
 class HolidayScreen extends StatelessWidget {
   const HolidayScreen({super.key});
 
@@ -39,22 +37,23 @@ class HolidayScreen extends StatelessWidget {
                           value: 20 / (20 + 29),
                           minHeight: 6,
                           backgroundColor: Colors.blue.shade100,
-                          valueColor:
-                              const AlwaysStoppedAnimation<Color>(Colors.blue),
+                          valueColor: const AlwaysStoppedAnimation<Color>(
+                            Colors.blue,
+                          ),
                         ),
                       ),
                     ),
                   ),
                 ),
                 const SizedBox(width: 16),
-                Expanded(
+                const Expanded(
                   child: MyDashboardCard(
                     headText: "Upcoming Holidays",
                     mainDayText: "5",
                     subDayText: "(Bookrid - 17 June)",
                     subText: "29 days remaining this month",
                     icon: Icons.calendar_month_outlined,
-                    child: const SizedBox(),
+                    child: SizedBox(),
                   ),
                 ),
               ],
@@ -71,85 +70,162 @@ class HolidayScreen extends StatelessWidget {
             ),
             const SizedBox(height: 20),
 
-            /// ✅ Obx Calendar
+            /// Obx Calendar
             Obx(() {
+              final focusedDay = controller.focusedDay.value;
+              final monthYear =
+                  "${_getMonthName(focusedDay.month)} ${focusedDay.year}";
+
               return Container(
                 padding: const EdgeInsets.all(10),
                 decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(12),
-                    color: Colors.white,
-                    boxShadow: [
-                      BoxShadow(
-                          blurRadius: 15,
-                          offset: const Offset(4.0, 4.0),
-                          spreadRadius: 1,
-                          color: Colors.grey.shade300),
-                      BoxShadow(
-                          blurRadius: 15,
-                          offset: const Offset(-4.0, -4.0),
-                          spreadRadius: 1,
-                          color: Colors.grey.shade300)
-                    ]),
-                child: TableCalendar(
-                  firstDay: DateTime.utc(2020, 1, 1),
-                  lastDay: DateTime.utc(2030, 12, 31),
-                  focusedDay: controller.focusedDay.value,
-                  selectedDayPredicate: (day) =>
-                      isSameDay(controller.selectedDay.value, day),
-                  calendarFormat: CalendarFormat.month,
-                  headerVisible: false,
-                  availableCalendarFormats: const {
-                    CalendarFormat.month: '',
-                  },
-                  calendarBuilders: CalendarBuilders(
-                    defaultBuilder: (context, day, _) {
-                      final color = controller.getHolidayColor(day);
-                      return Container(
-                        margin: const EdgeInsets.all(4),
-                        decoration: BoxDecoration(
-                          color: color,
-                          borderRadius: BorderRadius.circular(8),
-                          border: Border.all(color: Colors.grey.shade300),
-                        ),
-                        alignment: Alignment.center,
-                        child: Text(
-                          '${day.day}',
-                          style: TextStyle(
-                            color: color == Colors.transparent
-                                ? Colors.black
-                                : Colors.white,
+                  borderRadius: BorderRadius.circular(12),
+                  color: Colors.white,
+                  boxShadow: [
+                    BoxShadow(
+                      blurRadius: 15,
+                      offset: const Offset(4.0, 4.0),
+                      spreadRadius: 1,
+                      color: Colors.grey.shade300,
+                    ),
+                    BoxShadow(
+                      blurRadius: 15,
+                      offset: const Offset(-4.0, -4.0),
+                      spreadRadius: 1,
+                      color: Colors.grey.shade300,
+                    ),
+                  ],
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    /// Weekday Row
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        for (final day in [
+                          'Sun',
+                          'Mon',
+                          'Tue',
+                          'Wed',
+                          'Thu',
+                          'Fri',
+                          'Sat'
+                        ])
+                          Expanded(
+                            child: Center(
+                              child: Text(
+                                day,
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color:
+                                      day == 'Sun' ? Colors.red : Colors.black,
+                                ),
+                              ),
+                            ),
                           ),
-                        ),
-                      );
-                    },
-                    todayBuilder: (context, day, _) {
-                      final controller = Get.find<HolidayController>();
-                      final color = controller.getHolidayColor(day);
+                      ],
+                    ),
+                    const SizedBox(height: 8),
 
-                      return Container(
-                        margin: const EdgeInsets.all(4),
-                        decoration: BoxDecoration(
-                          color: color,
-                          borderRadius: BorderRadius.circular(8),
-                          border: Border.all(color: Colors.grey.shade300),
+                    /// Month-Year Label
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10.0),
+                      child: Text(
+                        monthYear,
+                        style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
                         ),
-                        alignment: Alignment.center,
-                        child: Text(
-                          '${day.day}',
-                          style: TextStyle(
-                            color: color == Colors.transparent
-                                ? Colors.black
-                                : Colors.white,
-                          ),
-                        ),
-                      );
-                    },
-                  ),
-                  onDaySelected: controller.onDaySelected,
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+
+                    /// TableCalendar
+                    TableCalendar(
+                      firstDay: DateTime.utc(2020, 1, 1),
+                      lastDay: DateTime.utc(2030, 12, 31),
+                      focusedDay: focusedDay,
+                      selectedDayPredicate: (day) =>
+                          isSameDay(controller.selectedDay.value, day),
+                      calendarFormat: CalendarFormat.month,
+                      headerVisible: false,
+                      daysOfWeekVisible: false,
+                      availableCalendarFormats: const {
+                        CalendarFormat.month: '',
+                      },
+                      calendarStyle: const CalendarStyle(
+                        outsideDaysVisible: false,
+                      ),
+                      onPageChanged: (newFocusedDay) {
+                        controller.focusedDay.value = newFocusedDay;
+                      },
+                      calendarBuilders: CalendarBuilders(
+                        defaultBuilder: (context, day, _) {
+                          final color = controller.getHolidayColor(day);
+                          final isSpecialRedDate =
+                              (day.weekday == DateTime.sunday &&
+                                  (day.day == 8 ||
+                                      day.day == 15 ||
+                                      day.day == 22 ||
+                                      day.day == 29));
+
+                          return Container(
+                            margin: const EdgeInsets.all(4),
+                            decoration: BoxDecoration(
+                              color: color,
+                              borderRadius: BorderRadius.circular(8),
+                              border: Border.all(color: Colors.grey.shade300),
+                            ),
+                            alignment: Alignment.center,
+                            child: Text(
+                              '${day.day}',
+                              style: TextStyle(
+                                color: isSpecialRedDate
+                                    ? Colors.red
+                                    : (color == Colors.transparent
+                                        ? Colors.black
+                                        : Colors.white),
+                              ),
+                            ),
+                          );
+                        },
+                        todayBuilder: (context, day, _) {
+                          final color = controller.getHolidayColor(day);
+                          final isSpecialRedDate = (day.weekday ==
+                                  DateTime.sunday &&
+                              (day.day == 8 || day.day == 15 || day.day == 22));
+
+                          return Container(
+                            margin: const EdgeInsets.all(4),
+                            decoration: BoxDecoration(
+                              color: color,
+                              borderRadius: BorderRadius.circular(8),
+                              border: Border.all(color: Colors.grey.shade300),
+                            ),
+                            alignment: Alignment.center,
+                            child: Text(
+                              '${day.day}',
+                              style: TextStyle(
+                                color: isSpecialRedDate
+                                    ? Colors.red
+                                    : (color == Colors.transparent
+                                        ? Colors.black
+                                        : Colors.white),
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                      onDaySelected: controller.onDaySelected,
+                    )
+                  ],
                 ),
               );
             }),
             const SizedBox(height: 20),
+
+            /// Holiday Table
             VerticalHolidayTable(),
           ],
         ),
@@ -165,7 +241,6 @@ class HolidayScreen extends StatelessWidget {
           width: 20,
           decoration: BoxDecoration(
             color: color,
-            shape: BoxShape.rectangle,
             borderRadius: BorderRadius.circular(6),
           ),
         ),
@@ -174,4 +249,22 @@ class HolidayScreen extends StatelessWidget {
       ],
     );
   }
+}
+
+String _getMonthName(int month) {
+  const months = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December'
+  ];
+  return months[month - 1];
 }
