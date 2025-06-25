@@ -5,7 +5,7 @@ class MyDashboardCard extends StatelessWidget {
   final String dayText;
   final String subText;
   final IconData icon;
-  final Widget child;
+  final Widget? child; // Make it optional
 
   const MyDashboardCard({
     Key? key,
@@ -13,7 +13,7 @@ class MyDashboardCard extends StatelessWidget {
     required this.dayText,
     required this.subText,
     required this.icon,
-    required this.child,
+    this.child, // Optional
   }) : super(key: key);
 
   @override
@@ -59,7 +59,10 @@ class MyDashboardCard extends StatelessWidget {
               style: const TextStyle(fontSize: 14, color: Colors.grey),
               overflow: TextOverflow.ellipsis,
             ),
-            child,
+            if (child != null) ...[
+              const SizedBox(height: 8),
+              child!,
+            ],
           ],
         ),
       ),

@@ -124,9 +124,9 @@ class LeaveDashboard extends StatelessWidget {
                   borderRadius: BorderRadius.circular(8),
                 ),
                 padding: const EdgeInsets.all(16),
-                child: Row(
+                child:const Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: const [
+                  children:  [
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [Text('Total days'), Text("20")],

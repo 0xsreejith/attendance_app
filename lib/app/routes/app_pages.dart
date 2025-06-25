@@ -8,6 +8,7 @@ import 'package:attendance_app/app/modules/auth/views/signup_page.dart';
 import 'package:attendance_app/app/modules/holiday/view/holiday_screen.dart';
 import 'package:attendance_app/app/modules/home/view/home_screen.dart';
 import 'package:attendance_app/app/modules/leave/view/apply_leave_screen.dart';
+import 'package:attendance_app/app/modules/leave_status/views/leave_status_screen.dart';
 import 'package:get/get.dart';
 
 import 'app_routes.dart';
@@ -24,5 +25,6 @@ class AppPages {
     GetPage(name: Routes.forgotPassword, page: () => ForgotPasswordPage()),
     GetPage(name: Routes.attendance, page: () => AttendanceScreen()),
     GetPage(name: Routes.holiday, page: () => const HolidayScreen()),
+    GetPage(name: Routes.leaveStatus, page: () =>  LeaveStatusScreen()),
   ];
 }

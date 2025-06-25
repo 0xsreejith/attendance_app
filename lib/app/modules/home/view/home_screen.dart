@@ -486,17 +486,17 @@ class _HomeScreenState extends State<HomeScreen> {
                                   iconColor: Colors.orange,
                                   title: "Leaves",
                                 ),
-                                const DashboardCard(
+                                DashboardCard(
                                   icon: Icons.circle,
                                   iconColor: Colors.purple,
                                   title: "Leave Status",
+                                  onTap: () => Get.toNamed("/leaveStatus"),
                                 ),
                                 DashboardCard(
-                                  icon: Icons.checklist,
-                                  iconColor: Colors.indigo,
-                                  title: "Holiday List",
-                                  onTap: () => Get.toNamed("/holiday"),
-                                ),
+                                    icon: Icons.checklist,
+                                    iconColor: Colors.indigo,
+                                    title: "Holiday List",
+                                    onTap: () => Get.toNamed("/holiday")),
                                 const DashboardCard(
                                   icon: Icons.payment_sharp,
                                   iconColor: Colors.greenAccent,
