@@ -1,3 +1,4 @@
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -8,7 +9,8 @@ class LeaveController extends GetxController {
   final selectedLeaveType = RxnString();
   final fromDate = Rxn<DateTime>();
   final toDate = Rxn<DateTime>();
-  final selectedTab = 0.obs; // 0 = Dashboard, 1 = Apply for Leave
+  final selectedAttachment = Rxn<String>();
+  final selectedTab = 0.obs;
 
   final List<String> leaveTypes = [
     "Casual Leave",
@@ -44,9 +46,19 @@ class LeaveController extends GetxController {
     }
   }
 
+  Future<void> pickAttachment() async {
+    FilePickerResult? result = await FilePicker.platform.pickFiles();
+    if (result != null) {
+      selectedAttachment.value = result.files.single.name;
+      // If you need full file path: result.files.single.path
+    }
+  }
+
   void submitLeave() {
     if (formKey.currentState!.validate()) {
-      if (fromDate.value == null || toDate.value == null || selectedLeaveType.value == null) {
+      if (fromDate.value == null ||
+          toDate.value == null ||
+          selectedLeaveType.value == null) {
         Get.snackbar("Incomplete", "Please fill all required fields.");
         return;
       }
@@ -61,6 +73,7 @@ class LeaveController extends GetxController {
     selectedLeaveType.value = null;
     fromDate.value = null;
     toDate.value = null;
+    selectedAttachment.value = null;
   }
 
   @override

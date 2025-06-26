@@ -497,10 +497,11 @@ class _HomeScreenState extends State<HomeScreen> {
                                     iconColor: Colors.indigo,
                                     title: "Holiday List",
                                     onTap: () => Get.toNamed("/holiday")),
-                                const DashboardCard(
+                                DashboardCard(
                                   icon: Icons.payment_sharp,
                                   iconColor: Colors.greenAccent,
                                   title: "Payslip",
+                                  onTap: () => Get.toNamed("/payslip"),
                                 ),
                                 const DashboardCard(
                                   icon: Icons.auto_graph_sharp,
