@@ -10,6 +10,7 @@ class LeaveForm extends StatelessWidget {
     final controller = Get.put(LeaveController());
 
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Form(
