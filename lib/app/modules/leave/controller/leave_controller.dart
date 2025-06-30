@@ -1,6 +1,7 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 
 class LeaveController extends GetxController {
   final formKey = GlobalKey<FormState>();
@@ -46,12 +47,52 @@ class LeaveController extends GetxController {
     }
   }
 
-  Future<void> pickAttachment() async {
-    FilePickerResult? result = await FilePicker.platform.pickFiles();
-    if (result != null) {
-      selectedAttachment.value = result.files.single.name;
-      // If you need full file path: result.files.single.path
-    }
+  void showAttachmentOptions(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
+      ),
+      builder: (_) => Wrap(
+        children: [
+          ListTile(
+            leading: const Icon(Icons.camera_alt),
+            title: const Text('Take Photo'),
+            onTap: () async {
+              Get.back(); 
+              final picker = ImagePicker();
+              final pickedFile = await picker.pickImage(source: ImageSource.camera);
+              if (pickedFile != null) {
+                selectedAttachment.value = pickedFile.name;
+              }
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.photo),
+            title: const Text('Pick from Gallery'),
+            onTap: () async {
+              Get.back();
+              final picker = ImagePicker();
+              final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+              if (pickedFile != null) {
+                selectedAttachment.value = pickedFile.name;
+              }
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.insert_drive_file),
+            title: const Text('Pick Document'),
+            onTap: () async {
+              Get.back();
+              FilePickerResult? result = await FilePicker.platform.pickFiles();
+              if (result != null) {
+                selectedAttachment.value = result.files.single.name;
+              }
+            },
+          ),
+        ],
+      ),
+    );
   }
 
   void submitLeave() {

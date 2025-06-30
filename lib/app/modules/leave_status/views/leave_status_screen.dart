@@ -3,7 +3,7 @@ import 'package:attendance_app/app/modules/leave_status/controller/leave_status_
 import 'package:attendance_app/app/modules/leave_status/views/components/custom_calander.dart';
 import 'package:attendance_app/app/modules/leave_status/views/components/leave_status_table.dart';
 import 'package:attendance_app/app/widgets/custom_header.dart';
-import 'package:attendance_app/app/widgets/my_holiday_card.dart';
+import 'package:attendance_app/app/widgets/custom_dashboard_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sales_graph/flutter_sales_graph.dart';
 import 'package:get/get.dart';

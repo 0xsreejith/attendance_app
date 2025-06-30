@@ -1,5 +1,5 @@
 import 'package:attendance_app/app/modules/payslip/controller/pay_slip_controller.dart';
-import 'package:attendance_app/app/modules/payslip/view/coponents/info_row.dart';
+import 'package:attendance_app/app/modules/payslip/view/coponents/to_row.dart';
 import 'package:attendance_app/app/widgets/custom_header.dart';
 import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
@@ -116,13 +116,13 @@ class PaylipScreen extends StatelessWidget {
                                           fontWeight: FontWeight.bold,
                                           fontSize: 16)),
                                   SizedBox(height: 10),
-                                  InfoRow("Employee Name", "Hemant Rangarajan"),
-                                  InfoRow(
+                                  ToRow("Employee Name", "Hemant Rangarajan"),
+                                  ToRow(
                                       "Designation", "Full-stack Developer"),
-                                  InfoRow("Employee ID", "Employee ID"),
-                                  InfoRow("Date of Joining", "30/05/2025"),
-                                  InfoRow("Pay Period", "June 2025"),
-                                  InfoRow("Pay Date", "15/07/2025"),
+                                  ToRow("Employee ID", "Employee ID"),
+                                  ToRow("Date of Joining", "30/05/2025"),
+                                  ToRow("Pay Period", "June 2025"),
+                                  ToRow("Pay Date", "15/07/2025"),
                                 ],
                               ),
                             ),
@@ -183,8 +183,8 @@ class PaylipScreen extends StatelessWidget {
                                       padding: EdgeInsets.all(10),
                                       child: Column(
                                         children: [
-                                          InfoRow("Paid Days", "31"),
-                                          InfoRow("LOP Days", "0"),
+                                          ToRow("Paid Days", "31"),
+                                          ToRow("LOP Days", "0"),
                                         ],
                                       ),
                                     )
@@ -217,9 +217,9 @@ class PaylipScreen extends StatelessWidget {
 
                   // Earnings & Deductions
                   Container(
-                    decoration: const BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.only(
+                    decoration:  BoxDecoration(
+                      color: Colors.white.withOpacity(0.2),
+                      borderRadius: const BorderRadius.only(
                           topLeft: Radius.circular(12),
                           topRight: Radius.circular(12)),
                     ),
@@ -335,7 +335,7 @@ class PaylipScreen extends StatelessWidget {
             ),
             const SizedBox(height: 30),
 
-            // ✅ Download Button
+            //  Download Button
             GestureDetector(
               onTap: () => controller.exportPayslipToPdf(),
               child: Container(

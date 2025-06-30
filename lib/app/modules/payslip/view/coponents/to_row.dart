@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 
-
-class InfoRow extends StatelessWidget {
+class ToRow extends StatelessWidget {
   final String label;
   final String value;
 
-  const InfoRow(this.label, this.value, {super.key});
+  const ToRow(this.label, this.value, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +13,12 @@ class InfoRow extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Expanded(flex: 2, child: Text("$label :",style: TextStyle(fontSize: 11),)),
+          Expanded(
+              flex: 2,
+              child: Text(
+                "$label :",
+                style: const TextStyle(fontSize: 11),
+              )),
           Expanded(
             flex: 3,
             child: Text(
@@ -27,5 +31,3 @@ class InfoRow extends StatelessWidget {
     );
   }
 }
-
-

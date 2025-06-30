@@ -2,7 +2,7 @@ import 'package:attendance_app/app/modules/holiday/controller/holiday_controller
 import 'package:attendance_app/app/modules/holiday/view/components/holi_day_table.dart';
 import 'package:attendance_app/app/widgets/custom_calander.dart';
 import 'package:attendance_app/app/widgets/custom_header.dart';
-import 'package:attendance_app/app/widgets/my_holiday_card.dart';
+import 'package:attendance_app/app/widgets/custom_dashboard_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

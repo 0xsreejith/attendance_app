@@ -11,4 +11,5 @@ abstract class Routes {
   static const holiday = '/holiday';
   static const leaveStatus = '/leaveStatus';
   static const payslip = '/payslip';
+  static const reports = '/reports';
 }

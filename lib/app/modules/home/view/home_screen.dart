@@ -363,79 +363,93 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     const SizedBox(height: 15),
                     Obx(() {
-                      return SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: List.generate(tabs.length, (index) {
-                            final tab = tabs[index];
-                            return Padding(
-                              padding: const EdgeInsets.only(left: 5.0),
-                              child: TabButton(
-                                text: tab["title"],
-                                icon: tab["icon"],
-                                isSelected:
-                                    tabController.selectedTab.value == index,
-                                onTap: () => tabController.changeTab(index),
-                              ),
-                            );
-                          }),
-                        ),
-                      );
-                    }),
-                    const SizedBox(height: 10),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text("Sort by:",
-                            style: TextStyle(
-                                color: Colors.grey[600],
-                                fontWeight: FontWeight.bold)),
-                        Row(
-                          children: [
-                            Radio<String>(
-                              value: "deadline",
-                              groupValue: selectedSort,
-                              onChanged: (value) {
-                                setState(() {
-                                  selectedSort = value!;
-                                });
-                              },
-                            ),
-                            const Text("Deadline"),
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            Radio<String>(
-                              value: "project",
-                              groupValue: selectedSort,
-                              onChanged: (value) {
-                                setState(() {
-                                  selectedSort = value!;
-                                });
-                              },
-                            ),
-                            const Text("Project"),
-                          ],
-                        ),
-                        Icon(Icons.settings, color: Colors.grey[600]),
-                      ],
-                    ),
-                    const SizedBox(height: 10),
-                    Obx(() {
-                      switch (tabController.selectedTab.value) {
-                        case 0:
-                          return const MyTasks();
-                        case 1:
-                          return const TaskTracker();
-                        case 2:
-                          return const OngoingPendingTasks();
-                        case 3:
-                          return const WorkSummery();
-                        default:
-                          return const SizedBox();
+                      if (!punchController.isPunchedIn.value) {
+                        return const SizedBox(); // Hide tasks if not punched in
                       }
+                      return Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text("Tasks",
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 22)),
+                          const SizedBox(height: 10),
+                          SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            child: Row(
+                              children: List.generate(tabs.length, (index) {
+                                final tab = tabs[index];
+                                return Padding(
+                                  padding: const EdgeInsets.only(left: 5.0),
+                                  child: TabButton(
+                                    text: tab["title"],
+                                    icon: tab["icon"],
+                                    isSelected:
+                                        tabController.selectedTab.value ==
+                                            index,
+                                    onTap: () => tabController.changeTab(index),
+                                  ),
+                                );
+                              }),
+                            ),
+                          ),
+                          const SizedBox(height: 10),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text("Sort by:",
+                                  style: TextStyle(
+                                      color: Colors.grey[600],
+                                      fontWeight: FontWeight.bold)),
+                              Row(
+                                children: [
+                                  Radio<String>(
+                                    value: "deadline",
+                                    groupValue: selectedSort,
+                                    onChanged: (value) {
+                                      setState(() {
+                                        selectedSort = value!;
+                                      });
+                                    },
+                                  ),
+                                  const Text("Deadline"),
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  Radio<String>(
+                                    value: "project",
+                                    groupValue: selectedSort,
+                                    onChanged: (value) {
+                                      setState(() {
+                                        selectedSort = value!;
+                                      });
+                                    },
+                                  ),
+                                  const Text("Project"),
+                                ],
+                              ),
+                              Icon(Icons.settings, color: Colors.grey[600]),
+                            ],
+                          ),
+                          const SizedBox(height: 10),
+                          Obx(() {
+                            switch (tabController.selectedTab.value) {
+                              case 0:
+                                return const MyTasks();
+                              case 1:
+                                return const TaskTracker();
+                              case 2:
+                                return const OngoingPendingTasks();
+                              case 3:
+                                return const WorkSummery();
+                              default:
+                                return const SizedBox();
+                            }
+                          }),
+                        ],
+                      );
                     }),
                     const SizedBox(height: 20),
                     const Text("Dashboard",
@@ -503,11 +517,11 @@ class _HomeScreenState extends State<HomeScreen> {
                                   title: "Payslip",
                                   onTap: () => Get.toNamed("/payslip"),
                                 ),
-                                const DashboardCard(
-                                  icon: Icons.auto_graph_sharp,
-                                  iconColor: Colors.red,
-                                  title: "Reports",
-                                ),
+                                DashboardCard(
+                                    icon: Icons.auto_graph_sharp,
+                                    iconColor: Colors.red,
+                                    title: "Reports",
+                                    onTap: () => Get.toNamed("/reports")),
                               ],
                             );
                           },

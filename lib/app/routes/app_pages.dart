@@ -10,6 +10,7 @@ import 'package:attendance_app/app/modules/home/view/home_screen.dart';
 import 'package:attendance_app/app/modules/leave/view/apply_leave_screen.dart';
 import 'package:attendance_app/app/modules/leave_status/views/leave_status_screen.dart';
 import 'package:attendance_app/app/modules/payslip/view/paylip_screen.dart';
+import 'package:attendance_app/app/modules/reports/view/reports_page.dart';
 import 'package:get/get.dart';
 
 import 'app_routes.dart';
@@ -28,5 +29,6 @@ class AppPages {
     GetPage(name: Routes.holiday, page: () => const HolidayScreen()),
     GetPage(name: Routes.leaveStatus, page: () =>  LeaveStatusScreen()),
     GetPage(name: Routes.payslip, page: () =>  PaylipScreen()),
+    GetPage(name: Routes.reports, page: () => const ReportsPage()),
   ];
 }

@@ -91,12 +91,13 @@ class LeaveForm extends StatelessWidget {
                   style: TextStyle(fontWeight: FontWeight.bold)),
               const SizedBox(height: 6),
               Obx(() => InkWell(
-                    onTap: controller.pickAttachment,
+                    onTap: () => controller.showAttachmentOptions(context),
                     child: InputDecorator(
                       decoration: InputDecoration(
                         prefixIcon: const Icon(Icons.attach_file),
                         border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(8)),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
                       ),
                       child: Text(
                         controller.selectedAttachment.value ??

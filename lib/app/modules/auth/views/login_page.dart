@@ -21,6 +21,15 @@ class LoginPage extends StatelessWidget {
     final success = await authController.login(email, password);
 
     if (success) {
+      Get.snackbar(
+        "Login Successful",
+        "Welcome back!",
+        snackPosition: SnackPosition.BOTTOM,
+      );
+
+      // Wait 500 milliseconds before navigating
+      await Future.delayed(const Duration(milliseconds: 500));
+
       Get.offAllNamed(Routes.MAIN);
     } else {
       _showErrorDialog(context);
