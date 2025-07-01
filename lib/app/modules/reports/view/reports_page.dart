@@ -9,7 +9,6 @@ class ReportsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Example data for reports
     final List<Map<String, dynamic>> reportData = [
       {
         'title': 'Total Working Days',

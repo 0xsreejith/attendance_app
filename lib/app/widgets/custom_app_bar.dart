@@ -1,4 +1,6 @@
+import 'package:attendance_app/app/modules/home/view/notification_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class CustomAppBar extends StatelessWidget {
   const CustomAppBar({super.key});
@@ -96,9 +98,19 @@ class CustomAppBar extends StatelessWidget {
             padding: const EdgeInsets.all(10),
             decoration: BoxDecoration(
                 color: Colors.blue, borderRadius: BorderRadius.circular(30)),
-            child: const Icon(
-              Icons.notifications,
-              color: Colors.white,
+            child: GestureDetector(
+              onTap: () {
+                Get.to(
+                  () => NotificationsScreen(),
+                  transition: Transition.rightToLeft,
+                  duration: const Duration(milliseconds: 400),
+                  curve: Curves.easeInOut,
+                );
+              },
+              child: Icon(
+                Icons.notifications,
+                color: Colors.white,
+              ),
             ),
           ),
         )

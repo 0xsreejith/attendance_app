@@ -53,6 +53,7 @@ dependencies:
   printing: ^5.14.2
   file_picker: ^10.2.0
   image_picker: ^1.1.2
+  flutter_svg: ^2.2.0
 
 dev_dependencies:
   flutter_test:
@@ -82,6 +83,8 @@ flutter:
     - assets/scan2.json
     - assets/images/top-edited.jpg
     - assets/images/bottom.png
+    - assets/images/banner.png
+    - assets/images/pana.svg
 
   #   - images/a_dot_ham.jpeg
 

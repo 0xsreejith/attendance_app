@@ -21,7 +21,7 @@ class BottomNavScreen extends StatelessWidget {
     const HomeScreen(),
     MyAttendanceScreen(),
     const Center(child: Text("Leave Page")),
-    const ProfilePage()
+    const ProfileScreen()
   ];
 
   @override
