@@ -93,25 +93,40 @@ class CustomAppBar extends StatelessWidget {
           ],
         ),
         Padding(
-          padding: const EdgeInsets.only(right: 8.0),
-          child: Container(
-            padding: const EdgeInsets.all(10),
-            decoration: BoxDecoration(
-                color: Colors.blue, borderRadius: BorderRadius.circular(30)),
-            child: GestureDetector(
-              onTap: () {
-                Get.to(
-                  () => NotificationsScreen(),
-                  transition: Transition.rightToLeft,
-                  duration: const Duration(milliseconds: 400),
-                  curve: Curves.easeInOut,
-                );
-              },
-              child: Icon(
-                Icons.notifications,
-                color: Colors.white,
+          padding: const EdgeInsets.only(right: 10.0),
+          child: Stack(
+            children: [
+              GestureDetector(
+                onTap: () {
+                  Get.to(
+                    () => const NotificationsScreen(),
+                    transition: Transition.rightToLeft,
+                    duration: const Duration(milliseconds: 400),
+                    curve: Curves.easeInOut,
+                  );
+                },
+                child: Container(
+                  padding: const EdgeInsets.all(8),
+                  decoration: const BoxDecoration(
+                    color: Colors.blue,
+                    shape: BoxShape.circle,
+                  ),
+                  child: const Icon(Icons.notifications, color: Colors.white),
+                ),
               ),
-            ),
+              Positioned(
+                top: 2,
+                right: 2,
+                child: Container(
+                  width: 8,
+                  height: 8,
+                  decoration: const BoxDecoration(
+                    color: Colors.red,
+                    shape: BoxShape.circle,
+                  ),
+                ),
+              ),
+            ],
           ),
         )
       ],
