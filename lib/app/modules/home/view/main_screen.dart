@@ -36,6 +36,7 @@ class BottomNavScreen extends StatelessWidget {
             unselectedItemColor: Colors.grey,
             selectedItemColor: Colors.blue,
             currentIndex: controller.selectedIndex.value,
+            elevation: 0,
             onTap: controller.changeTab,
             items: const [
               BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),

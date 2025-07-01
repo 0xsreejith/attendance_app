@@ -20,6 +20,14 @@ class NotificationsScreen extends StatelessWidget {
               },
             ),
           ]),
+          const Text(
+            'Notifications',
+            style: TextStyle(
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          const SizedBox(height: 16),
           const NotificationCard(
             icon: Icons.close,
             iconColor: Colors.red,
@@ -29,7 +37,7 @@ class NotificationsScreen extends StatelessWidget {
                 'Missed Clock-in Detected. Please update your attendance or contact HR.',
           ),
           const NotificationCard(
-            icon: Icons.access_time,
+            icon: Icons.alarm,
             iconColor: Colors.orange,
             title: 'Late Attendance',
             titleColor: Colors.orange,
@@ -53,7 +61,7 @@ class NotificationsScreen extends StatelessWidget {
                 'Your leave request for June 15 has been approved. Enjoy your day off!',
           ),
           const NotificationCard(
-            icon: Icons.cancel,
+            icon: Icons.minimize,
             iconColor: Colors.red,
             title: 'Leave Rejection',
             titleColor: Colors.red,
