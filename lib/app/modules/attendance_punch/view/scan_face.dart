@@ -1,4 +1,3 @@
-
 import 'package:attendance_app/app/modules/attendance_punch/view/scan_succes_screen.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
@@ -28,6 +27,13 @@ class _ScanFaceScreenState extends State<ScanFaceScreen> {
 
   Future<void> initCamera() async {
     _cameras = await availableCameras();
+
+    final frontCameraIndex = _cameras!.indexWhere(
+      (camera) => camera.lensDirection == CameraLensDirection.front,
+    );
+
+    _selectedCameraIndex = frontCameraIndex != -1 ? frontCameraIndex : 0;
+
     await _startCamera(_selectedCameraIndex);
   }
 
